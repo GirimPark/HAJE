@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kakao.sdk.common.KakaoSdk;
 import com.kakao.sdk.common.util.KakaoCustomTabsClient;
 import com.kakao.sdk.navi.NaviClient;
 import com.kakao.sdk.navi.model.CoordType;
