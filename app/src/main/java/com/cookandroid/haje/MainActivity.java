@@ -1,5 +1,6 @@
 package com.cookandroid.haje;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -101,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
                 new Location("카카오 판교오피스", "127.108640", "37.402111"),
                 new NaviOption(CoordType.WGS84)
         );
+    }
+
+    public void onLoginButtonClicked(View v){
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
     }
 
 }
