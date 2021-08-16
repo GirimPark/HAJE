@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/inputPhoneNum"
+        android:inputType="phone"
+        android:ems="10"
+        android:layout_width="368dp"
+        android:layout_height="34dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="95dp"
+        android:background="@drawable/input_form" />
+
+    <EditText
+        android:id="@+id/inputID"
+        android:inputType="textEmailAddress"
+        android:layout_width="368dp"
+        android:layout_height="34dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="46dp"
+        android:background="@drawable/input_form" />
+
+    <EditText
+        android:id="@+id/inputName"
+        android:inputType="text"
+        android:layout_width="368dp"
+        android:layout_height="34dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/input_form" />
+
+    <EditText
+        android:id="@+id/inputPW"
+        android:inputType="textPassword"
+        android:layout_width="368dp"
+        android:layout_height="34dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="47dp"
+        android:background="@drawable/input_form" />
+
+    <EditText
+        android:id="@+id/inputPW2"
+        android:inputType="textPassword"
+        android:layout_width="368dp"
+        android:layout_height="34dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="47dp"
+        android:background="@drawable/input_form" />
+
+    <ImageButton
+        android:id="@+id/btnNext"
+        android:layout_width="368dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/btn_next" />
+
+</LinearLayout>
