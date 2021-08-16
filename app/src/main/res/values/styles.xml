@@ -8,11 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.LoginPage">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@color/mainPurple</item>
-        <item name="android:windowBackground">@drawable/login_page</item>
+        <item name="android:windowBackground">@drawable/ic_bg_login</item>
+    </style>
+
+    <style name="AppTheme.SignUpPage">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/mainPurple</item>
+        <item name="android:windowBackground">@drawable/sign_up_background</item>
     </style>
 
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,11 +32,11 @@
 
     <ImageButton
         android:id="@+id/btnKakao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
         android:layout_marginTop="42dp"
-        android:background="@drawable/kakao_login_medium_wide"
+        android:background="@drawable/kakao_login_large_wide"
         />
 
     <ImageButton
@@ -46,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/btn_naver"
+        android:background="@drawable/ic_btn_naver"
         />
 
     <ImageButton
@@ -55,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="@drawable/sign_in_button"/>
+        android:background="@drawable/ic_btn_signup"
+        android:hapticFeedbackEnabled="true" />
 
 </LinearLayout>
