@@ -2,6 +2,7 @@ package com.cookandroid.haje;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -17,18 +18,22 @@ public class SignupActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth auth;
 
-    EditText inputPhoneNum = findViewById(R.id.inputPhoneNum);
-    EditText inputID = findViewById(R.id.inputID);
-    EditText inputName = findViewById(R.id.inputName);
-    EditText inputPW = findViewById(R.id.inputPW);
-    EditText inputPW2 = findViewById(R.id.inputPW2);
-    ImageButton btnNext = findViewById(R.id.btnSignUp);
+    Integer user_id = 1;
+
+    EditText inputPhoneNum;
+    EditText inputID;
+    EditText inputName;
+    EditText inputPW;
+    EditText inputPW2;
+    ImageButton btnNext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        btnNext = findViewById(R.id.btnNext);
         auth = FirebaseAuth.getInstance();
 
         // "다음"버튼 클릭시 정보 입력 되었는지 확인 후 firebase에 정보 저장
@@ -41,6 +46,13 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void confirmAndCreate(){
+
+        inputPhoneNum = findViewById(R.id.inputPhoneNum);
+        inputID = findViewById(R.id.inputID);
+        inputName = findViewById(R.id.inputName);
+        inputPW = findViewById(R.id.inputPW);
+        inputPW2 = findViewById(R.id.inputPW2);
+
         // 정보 확인 *수정 : 존재하는 계정인지 등 정보 중복 확인해야함
         if(inputPhoneNum.getText().toString().isEmpty() ||
                 inputID.getText().toString().isEmpty() ||
@@ -63,10 +75,14 @@ public class SignupActivity extends AppCompatActivity {
                    String email = inputID.getText().toString();
                    String name = inputName.getText().toString();
                    String password = inputPW.getText().toString();
-                   User user = new User(number, email, name, password);
+
+                   User user = new User(user_id++, number,
+                           email, name,
+                           password, true,
+                           "car", "111");
 
                    db = FirebaseFirestore.getInstance();
-                   db.collection("user").document("user_id").set(user)
+                   db.collection("user").document(user.user_id.toString()).set(user)
                    .addOnCompleteListener(subtask -> {
                        if(subtask.isSuccessful()){
                            Toast.makeText(this, "회원 정보 삽입 성공", Toast.LENGTH_LONG).show();

@@ -1,6 +1,5 @@
 package com.cookandroid.haje;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -22,10 +21,14 @@ public class LoginActivity extends AppCompatActivity {
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    public void onBtnSignUpClicked(){
+
     }
 }
