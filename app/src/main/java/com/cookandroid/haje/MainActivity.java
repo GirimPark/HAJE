@@ -110,4 +110,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onGpsLoginButtonClicked(View v){
+        Toast.makeText(this, "GPS 탐색 시작", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getApplicationContext(), GpsActivity.class);
+        startActivity(intent);
+    }
+
 }
