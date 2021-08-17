@@ -15,6 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="49b0f46f5cab7ddf1154d8c0399dabe0"/>
+        <activity android:name=".GpsActivity"/>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.LoginPage" />
