@@ -70,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
         if(NaviClient.getInstance().isKakaoNaviInstalled(this)){
             Log.i("카카오내비", "카카오내비 앱으로 길안내 가능");
 
-//            Intent intent = getPackageManager().getLaunchIntentForPackage("com.locnall.KimGiSa");
-//            startActivity(intent);
 
             // 경유지 없는 경우
             startActivity(
@@ -104,10 +102,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNavi2ButtonClicked(View v){
-        NaviClient.getInstance().shareDestinationIntent(
+        startActivity(
+                NaviClient.getInstance().shareDestinationIntent(
                 new Location("카카오 판교오피스", "127.108640", "37.402111"),
                 new NaviOption(CoordType.WGS84)
+            )
         );
+
     }
 
     public void onLoginButtonClicked(View v){
