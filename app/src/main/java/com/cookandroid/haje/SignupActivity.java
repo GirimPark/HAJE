@@ -27,13 +27,13 @@ public class SignupActivity extends AppCompatActivity {
     EditText inputPW2;
     ImageButton btnNext;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
         btnNext = findViewById(R.id.btnNext);
-
         auth = FirebaseAuth.getInstance();
 
         // "다음"버튼 클릭시 정보 입력 되었는지 확인 후 firebase에 정보 저장
@@ -46,6 +46,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void confirmAndCreate(){
+
         inputPhoneNum = findViewById(R.id.inputPhoneNum);
         inputID = findViewById(R.id.inputID);
         inputName = findViewById(R.id.inputName);

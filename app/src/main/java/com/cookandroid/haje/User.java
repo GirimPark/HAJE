@@ -1,6 +1,7 @@
 package com.cookandroid.haje;
 
 public class User {
+
     Integer user_id;
     String number;
     String email;

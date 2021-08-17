@@ -104,9 +104,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNavi2ButtonClicked(View v){
-        NaviClient.getInstance().shareDestinationIntent(
+        startActivity(
+                NaviClient.getInstance().shareDestinationIntent(
                 new Location("카카오 판교오피스", "127.108640", "37.402111"),
                 new NaviOption(CoordType.WGS84)
+            )
         );
     }
 
