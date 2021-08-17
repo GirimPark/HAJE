@@ -22,4 +22,11 @@
         <item name="android:windowBackground">@drawable/sign_up_background</item>
     </style>
 
+    <style name="AppTheme.SignUpPage2">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/mainPurple</item>
+        <item name="android:windowBackground">@drawable/ic_bg_signup2</item>
+    </style>
+
 </resources>
