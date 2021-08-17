@@ -71,19 +71,20 @@ public class MainActivity extends AppCompatActivity {
             Log.i("카카오내비", "카카오내비 앱으로 길안내 가능");
 
             // 경유지 없는 경우
-//            NaviClient.getInstance().navigateIntent(
-//                    new Location("카카오 판교오피스", "127.108640", "37.402111"),
-//                    new NaviOption(CoordType.WGS84)
-//            );
-
-            // 경유지 있는 경우
-            ArrayList<Location> stopover = new ArrayList<Location>();
-            stopover.add(new Location("판교역 1번출구", "127.111492", "37.395225"));
             NaviClient.getInstance().navigateIntent(
                     new Location("카카오 판교오피스", "127.108640", "37.402111"),
-                    new NaviOption(CoordType.WGS84),
-                    stopover
+                    new NaviOption(CoordType.WGS84)
             );
+
+
+            // 경유지 있는 경우
+//            ArrayList<Location> stopover = new ArrayList<Location>();
+//            stopover.add(new Location("판교역 1번출구", "127.111492", "37.395225"));
+//            NaviClient.getInstance().navigateIntent(
+//                    new Location("카카오 판교오피스", "127.108640", "37.402111"),
+//                    new NaviOption(CoordType.WGS84),
+//                    stopover
+//            );
         }
         else {
             Log.i("카카오내비", "카카오내비 미설치 : 웹 길안내 사용 권장");
