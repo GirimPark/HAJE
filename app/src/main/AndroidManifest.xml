@@ -17,10 +17,13 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.LoginPage"></activity>
+            android:theme="@style/AppTheme.LoginPage" />
         <activity
             android:name=".SignupActivity"
-            android:theme="@style/AppTheme.SignUpPage"></activity>
+            android:theme="@style/AppTheme.SignUpPage" />
+        <activity
+            android:name=".SignupActivity2"
+            android:theme="@style/AppTheme.SignUpPage2" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

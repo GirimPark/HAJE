@@ -14,7 +14,7 @@
         android:paddingRight="10dp"
         android:layout_gravity="center"
         android:layout_marginTop="95dp"
-        android:background="@drawable/input_form" />
+        android:background="@drawable/ic_input_box" />
 
     <EditText
         android:id="@+id/inputID"
@@ -25,7 +25,7 @@
         android:paddingRight="10dp"
         android:layout_gravity="center"
         android:layout_marginTop="46dp"
-        android:background="@drawable/input_form" />
+        android:background="@drawable/ic_input_box" />
 
     <EditText
         android:id="@+id/inputName"
@@ -36,7 +36,7 @@
         android:paddingRight="10dp"
         android:layout_gravity="center"
         android:layout_marginTop="48dp"
-        android:background="@drawable/input_form" />
+        android:background="@drawable/ic_input_box" />
 
     <EditText
         android:id="@+id/inputPW"
@@ -47,7 +47,7 @@
         android:paddingRight="10dp"
         android:layout_gravity="center"
         android:layout_marginTop="47dp"
-        android:background="@drawable/input_form" />
+        android:background="@drawable/ic_input_box" />
 
     <EditText
         android:id="@+id/inputPW2"
@@ -58,7 +58,7 @@
         android:paddingRight="10dp"
         android:layout_gravity="center"
         android:layout_marginTop="47dp"
-        android:background="@drawable/input_form" />
+        android:background="@drawable/ic_input_box" />
 
     <ImageButton
         android:id="@+id/btnNext"
@@ -66,6 +66,6 @@
         android:layout_height="35dp"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
-        android:background="@drawable/btn_next" />
+        android:background="@drawable/ic_btn_next" />
 
 </LinearLayout>
