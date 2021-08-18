@@ -15,13 +15,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".ShowRideActivity"
             android:theme="@style/AppTheme.ShowRidePage"></activity>
-        <activity
-            android:name=".DriverCallActivity"
-            android:theme="@style/AppTheme.Drivercall" />
-        <activity
-            android:name=".SignupActivity3"
+       
+            
+      
+
+
+
+
+
+        <activity android:name=".DriverCallActivity"
+            android:theme="@style/AppTheme.Drivercall">
+
+
+        </activity>
+
+
+        <activity android:name=".SignupActivity3"
+
             android:theme="@style/AppTheme.LoginPage" />
         <activity android:name=".MyPageActivity" />
 
