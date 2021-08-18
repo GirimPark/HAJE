@@ -18,7 +18,7 @@ public class SignupActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth auth;
 
-    Integer user_id = 1;
+    int user_id;
 
     EditText inputPhoneNum;
     EditText inputID;
@@ -40,8 +40,10 @@ public class SignupActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
+
                 confirmAndCreate();
             }
+
         });
     }
 
@@ -71,18 +73,22 @@ public class SignupActivity extends AppCompatActivity {
             ).addOnCompleteListener(task -> {
 
                if(task.isSuccessful()){ // 회원가입 성공
+
                    String number = inputPhoneNum.getText().toString();
                    String email = inputID.getText().toString();
                    String name = inputName.getText().toString();
                    String password = inputPW.getText().toString();
 
-                   User user = new User(user_id++, number,
+                   db = FirebaseFirestore.getInstance();
+
+
+                   User user = new User(number,
                            email, name,
                            password, true,
                            "car", "111");
 
-                   db = FirebaseFirestore.getInstance();
-                   db.collection("user").document(user.user_id.toString()).set(user)
+
+                   db.collection("user").document(user.email).set(user)
                    .addOnCompleteListener(subtask -> {
                        if(subtask.isSuccessful()){
                            Toast.makeText(this, "회원 정보 삽입 성공", Toast.LENGTH_LONG).show();
@@ -95,6 +101,8 @@ public class SignupActivity extends AppCompatActivity {
                    Toast.makeText(this, "회원가입 성공", Toast.LENGTH_LONG).show();
                    Intent intent = new Intent(getApplicationContext(), SignupActivity2.class);
                    startActivity(intent);
+
+                   getDBUser(db, user);
                }
 
                else{    //  회원가입 실패
@@ -104,6 +112,20 @@ public class SignupActivity extends AppCompatActivity {
             });
 
         }
+    }
+
+    public int getDBUser(FirebaseFirestore db, User user){
+        db.collection("user").document(user.email).get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        Log.d("db접근 password 받아오기", task.getResult().get("password").toString());
+                    }
+                    else{
+                        Log.d("db접근 실패", task.getException().getMessage());
+                    }
+                });
+
+        return user_id;
     }
 
 }
