@@ -19,6 +19,12 @@ import net.daum.mf.map.api.MapView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class DriverCallActivity extends AppCompatActivity {
     private FirebaseFirestore db;
@@ -38,6 +44,7 @@ public class DriverCallActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_call);
+
 
         db = FirebaseFirestore.getInstance();
 
@@ -59,6 +66,10 @@ public class DriverCallActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 putPoint(db, StartPoint.getText().toString(), EndPoint.getText().toString());
+                Intent intent = new Intent(getApplicationContext(), GpsActivity.class);
+                intent.putExtra("name", "mike");
+                setResult(Activity.RESULT_OK, intent);
+                finish();
             }
         });
 
@@ -115,5 +126,7 @@ public class DriverCallActivity extends AppCompatActivity {
             }
         });
 
+
     }
 }
+
