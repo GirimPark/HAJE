@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".MyPageActivity"></activity>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -39,10 +40,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".PaymentActivity"
-            android:theme="@style/AppTheme.PaymentPage"/>
+            android:theme="@style/AppTheme.PaymentPage" />
     </application>
 
 </manifest>
