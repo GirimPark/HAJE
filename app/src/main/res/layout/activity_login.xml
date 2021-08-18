@@ -20,16 +20,25 @@
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="115dp"
+        android:inputType="textPassword"
         android:backgroundTint="@color/mainPurple"
         android:textSize="15sp"/>
+
+<!--    <EditText-->
+<!--        android:id="@+id/inputPW"-->
+<!--        android:layout_width="210dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="115dp"-->
+<!--        android:backgroundTint="@color/mainPurple"-->
+<!--        android:textSize="15sp"/>-->
 
     <ImageButton
         android:id="@+id/btnSignIn"
         android:layout_width="250dp"
         android:layout_height="34dp"
-        android:background="@drawable/btn_login_selector"
         android:layout_gravity="center"
-        android:layout_marginTop="42dp"/>
+        android:layout_marginTop="42dp"
+        android:background="@drawable/btn_login_selector" />
 
     <ImageButton
         android:id="@+id/btnKakao"

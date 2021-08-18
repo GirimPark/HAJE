@@ -18,11 +18,16 @@
 
 
 
+
         <activity android:name=".DriverCallActivity"></activity>
 
 
         <activity android:name=".SignupActivity3"
             android:theme="@style/AppTheme.LoginPage" />
+
+        <activity android:name=".MyPageActivity"></activity>
+        
+
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -52,7 +57,11 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".PaymentActivity"
-            android:theme="@style/AppTheme.PaymentPage" />
+
+
+            android:theme="@style/AppTheme.PaymentPage"/>
+
+
     </application>
 
 </manifest>

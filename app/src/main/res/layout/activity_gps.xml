@@ -7,8 +7,109 @@
     tools:context=".GpsActivity">
 
     <RelativeLayout
-        android:id="@+id/map_view"
+        android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="732dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="-5dp"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+        <!--기사 호출 버튼-->
+        <ImageButton
+            android:id="@+id/callButton"
+            android:layout_width="57dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="163dp"
+            android:layout_marginEnd="152dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/ic_call_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <!--로딩 화면 이미지-->
+        <ImageView
+            android:id="@+id/loadingImage"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="270dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="270dp"
+            android:layout_weight="1"
+            android:background="@drawable/frame_loading"
+            android:visibility="invisible" />
+        <!--로딩 텍스트-->
+        <TextView
+            android:id="@+id/lodingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="353dp"
+            android:layout_marginBottom="712dp"
+            android:layout_weight="1"
+            android:text="기사님과 매칭 중입니다."
+            android:textColor="#ffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <!--마이페이지 버튼-->
+        <ImageButton
+            android:id="@+id/myPgButton"
+            android:layout_width="36dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="316dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_my_page" />
+        <!--내 위치 보기 버튼-->
+        <ImageButton
+            android:id="@+id/mapGpsButton"
+            android:layout_width="36dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="316dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="500dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_gps" />
+        <!--마이페이지 이미지-->
+<!--        <ImageView-->
+<!--            android:id="@+id/mpImage"-->
+<!--            android:layout_width="286dp"-->
+<!--            android:layout_height="700dp"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginStart="0dp"-->
+<!--            android:layout_marginTop="0dp"-->
+<!--            android:layout_marginEnd="0dp"-->
+<!--            android:layout_marginBottom="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/ic_mypage_1" />-->
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
