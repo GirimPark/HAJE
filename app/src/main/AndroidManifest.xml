@@ -19,7 +19,11 @@
 
 
 
-        <activity android:name=".DriverCallActivity"></activity>
+        <activity android:name=".DriverCallActivity"
+            android:theme="@style/AppTheme.Drivercall">
+
+
+        </activity>
 
 
         <activity android:name=".SignupActivity3"
