@@ -29,7 +29,7 @@
 
 
         <activity android:name=".SignupActivity3"
-            android:theme="@style/AppTheme.LoginPage" />
+            android:theme="@style/AppTheme.SignUpPage3" />
 
         <activity android:name=".MyPageActivity"></activity>
 
@@ -38,7 +38,8 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="49b0f46f5cab7ddf1154d8c0399dabe0" />
 
-        <activity android:name=".GpsActivity" />
+        <activity android:name=".GpsActivity"
+            android:theme="@style/AppTheme.SignUpPage3"/>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.LoginPage" />
