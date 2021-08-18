@@ -19,7 +19,6 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@color/mainPurple</item>
-        <item name="android:windowBackground">@drawable/sign_up_background</item>
     </style>
 
     <style name="AppTheme.SignUpPage2">
@@ -29,7 +28,6 @@
         <item name="android:windowBackground">@drawable/ic_bg_signup2</item>
     </style>
 
-
     <style name="AppTheme.SplashPage">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -37,5 +35,17 @@
         <item name="android:windowBackground">@drawable/startpage</item>
     </style>
 
+    <style name="AppTheme.PaymentPage">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="android:statusBarColor">@color/mainPurple</item>
+    <item name="android:windowBackground">@drawable/bg_payment</item>
+    </style>
+
+    <style name="CustomRadioTheme" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:colorControlNormal">#7a7a7a</item>
+        <item name="android:colorControlActivated">@color/mainPurple</item>
+        <item name="android:colorControlHighlight">@color/mainPurple</item>
+    </style>
 
 </resources>

@@ -26,7 +26,7 @@
     <ImageButton
         android:layout_width="250dp"
         android:layout_height="34dp"
-        android:background="@drawable/ic_login_button"
+        android:background="@drawable/btn_login_selector"
         android:layout_gravity="center"
         android:layout_marginTop="42dp"/>
 
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="@drawable/ic_btn_signup"
+        android:background="@drawable/btn_signup_selector"
         android:hapticFeedbackEnabled="true" />
 
 </LinearLayout>
