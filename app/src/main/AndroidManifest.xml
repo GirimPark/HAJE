@@ -32,23 +32,17 @@
             android:theme="@style/AppTheme.SignUpPage2" />
         <activity
             android:name=".SplashActivitiy"
-            android:theme="@style/AppTheme.SplashPage" >
-
+            android:theme="@style/AppTheme.SplashPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
-
         </activity>
-
-
-
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity
+            android:name=".PaymentActivity"
+            android:theme="@style/AppTheme.PaymentPage"/>
     </application>
 
 </manifest>
