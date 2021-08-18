@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class SignupActivity3 extends AppCompatActivity {
 
@@ -18,6 +19,8 @@ public class SignupActivity3 extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Toast.makeText(SignupActivity3.this, "여성인증 완료되었습니다.", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);

@@ -16,74 +16,104 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_request"
+            android:background="@drawable/ic_startend"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/StartPoint"
-                android:layout_width="320dp"
-                android:layout_height="57dp"
+                android:layout_width="230dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="320dp"
-
-
-                android:layout_marginBottom="50dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="190dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/ic_input_box"
                 android:text="출발지를 입력하세요."
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
             <EditText
                 android:id="@+id/EndPoint"
-                android:layout_width="320dp"
-                android:layout_height="57dp"
+                android:layout_width="230dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="28dp"
                 android:layout_marginTop="10dp"
-
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/ic_input_box"
                 android:text="도착지를 입력하세요." />
 
             <EditText
                 android:id="@+id/CarType"
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
+                android:layout_width="230dp"
+                android:layout_height="21dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="28dp"
 
-                android:layout_marginBottom="45dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="32dp"
                 android:background="@drawable/ic_input_box"
                 android:text="차 기종을 입력하세요." />
 
+
             <EditText
                 android:id="@+id/request"
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
+                android:layout_width="230dp"
+                android:layout_height="21dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
 
-                android:layout_marginBottom="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="38dp"
                 android:background="@drawable/ic_input_box"
-                android:text="요청 내역을 입력하세요." />
+                android:text="안심 연락망을 입력하세요." />
 
-            <EditText
-                android:id="@+id/guardian_number"
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/point"
+                android:layout_width="120dp"
+                android:layout_height="21dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/ic_input_box"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/ic_input_box" />
 
-                android:layout_marginBottom="50dp"
-                android:text="안심 번호를 입력하세요." />
+
+            <TextView
+                android:id="@+id/nowpoint"
+                android:layout_width="120dp"
+                android:layout_height="21dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+
+                android:background="@drawable/ic_input_box" />
+
+
+            <TextView
+                android:id="@+id/paypoint"
+                android:layout_width="190dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/ic_input_box" />
+
+
+
 
             <ImageButton
                 android:id="@+id/btnNext"
-                android:layout_width="368dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/ic_drivercall_btn" />
+                android:background="@drawable/ic_callcall" />
+
+
+
         </LinearLayout>
     </ScrollView>
 
