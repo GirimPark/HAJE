@@ -2,7 +2,6 @@ package com.cookandroid.haje;
 
 public class User {
 
-//    static int serial_num = 0;
     String number;
     String email;
     String name;
@@ -10,10 +9,6 @@ public class User {
     boolean auto_or_manual;
     String car;
     String guardian_number;
-
-    public User(){
-
-    }
 
     public User(String number,
                 String email, String name,

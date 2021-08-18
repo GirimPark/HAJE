@@ -20,8 +20,6 @@ public class SignupActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth auth;
 
-    int user_id;
-
     EditText inputPhoneNum;
     EditText inputID;
     EditText inputName;
@@ -47,12 +45,13 @@ public class SignupActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-
                 confirmAndCreate();
             }
 
         });
     }
+
+
 
     private void confirmAndCreate(){
 
@@ -61,7 +60,7 @@ public class SignupActivity extends AppCompatActivity {
         inputName = findViewById(R.id.inputName);
         inputPW = findViewById(R.id.inputPW);
         inputPW2 = findViewById(R.id.inputPW2);
-        inputCar = findViewById(R.id.inputPW2);
+        inputCar = findViewById(R.id.inputCar);
         rGroup = findViewById(R.id.rGroup);
         rBtn1 = findViewById(R.id.rBtn1);
         rBtn2 = findViewById(R.id.rBtn2);
@@ -75,12 +74,15 @@ public class SignupActivity extends AppCompatActivity {
                 inputPW.getText().toString().isEmpty() ||
                 inputPW2.getText().toString().isEmpty() ||
                 inputCar.getText().toString().isEmpty() ||
+                !(rBtn1.isChecked() || rBtn2.isChecked()) ||
                 inputNum2.getText().toString().isEmpty()) {
             Toast.makeText(this, "비어있는 정보를 입력해주세요", Toast.LENGTH_LONG).show();
         }
+
         else if(!inputPW.getText().toString().equals(inputPW2.getText().toString())){
             Toast.makeText(this, "비밀번호 입력이 일치하지 않습니다", Toast.LENGTH_LONG).show();
         }
+
         else{   // 정보 입력 모두 되었으면 저장
             auth.createUserWithEmailAndPassword(
                     inputID.getText().toString(),
@@ -130,20 +132,6 @@ public class SignupActivity extends AppCompatActivity {
             });
 
         }
-    }
-
-    public int getDBUser(FirebaseFirestore db, User user){  //파이어스토어에서 데이터 받아오는 함수
-        db.collection("user").document(user.email).get()
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        Log.d("db접근 password 받아오기", task.getResult().get("password").toString());
-                    }
-                    else{
-                        Log.d("db접근 실패", task.getException().getMessage());
-                    }
-                });
-
-        return user_id;
     }
 
 }
