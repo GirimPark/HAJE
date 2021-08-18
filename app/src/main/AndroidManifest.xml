@@ -15,9 +15,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+      
         <activity android:name=".CallDriverActivity"></activity>
-        <activity android:name=".MyPageActivity" />
-        <activity android:name=".SignupActivity3" />
+
+
+
+
+        <activity android:name=".DriverCallActivity"
+            android:theme="@style/AppTheme.Drivercall">
+
+
+        </activity>
+
+
+        <activity android:name=".SignupActivity3"
+            android:theme="@style/AppTheme.LoginPage" />
+
+        <activity android:name=".MyPageActivity"></activity>
+
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -33,6 +48,8 @@
         <activity
             android:name=".SignupActivity2"
             android:theme="@style/AppTheme.SignUpPage2" />
+
+
         <activity
             android:name=".SplashActivitiy"
             android:theme="@style/AppTheme.SplashPage">
@@ -45,7 +62,8 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".PaymentActivity"
-            android:theme="@style/AppTheme.PaymentPage" />
+            android:theme="@style/AppTheme.PaymentPage"/>
+
     </application>
 
 </manifest>

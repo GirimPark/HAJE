@@ -97,7 +97,6 @@
             android:background="@drawable/ic_gps" />
 
 
-
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

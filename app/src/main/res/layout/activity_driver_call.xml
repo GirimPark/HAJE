@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DriverCallActivity">
+
+
+    <TextView
+        android:id="@+id/StartPoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="290dp"
+        android:layout_marginBottom="70dp"
+        android:text="출발지를 입력하세요." />
+
+    <TextView
+        android:id="@+id/EndPoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="70dp"
+        android:text="도착지를 입력하세요." />
+
+    <TextView
+        android:id="@+id/CarType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="50dp"
+        android:text="차 기종을 입력하세요." />
+
+    <TextView
+        android:id="@+id/request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="60dp"
+        android:text="요청 내역을 입력하세요." />
+
+
+    <TextView
+        android:id="@+id/guardian_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="60dp"
+        android:text="안심 번호를 입력하세요." />
+
+
+        <ImageButton
+            android:id="@+id/btnNext"
+            android:layout_width="368dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/ic_drivercall_btn" />
+
+
+
+</LinearLayout>
