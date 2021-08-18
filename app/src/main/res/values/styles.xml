@@ -28,6 +28,13 @@
         <item name="android:windowBackground">@drawable/ic_bg_signup2</item>
     </style>
 
+
+    <style name="AppTheme.SignUpPage3">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/mainPurple</item>
+    </style>
+
     <style name="AppTheme.SplashPage">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -47,5 +54,9 @@
         <item name="android:colorControlActivated">@color/mainPurple</item>
         <item name="android:colorControlHighlight">@color/mainPurple</item>
     </style>
+
+
+
+
 
 </resources>
