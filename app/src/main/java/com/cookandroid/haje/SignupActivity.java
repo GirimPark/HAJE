@@ -55,7 +55,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void confirmAndCreate(){
 
-        inputPhoneNum = findViewById(R.id.inputPhoneNum);
+        inputPhoneNum = findViewById(R.id.inputDepart);
         inputID = findViewById(R.id.inputID);
         inputName = findViewById(R.id.inputName);
         inputPW = findViewById(R.id.inputPW);

@@ -92,23 +92,10 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="316dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="500dp"
+            android:layout_marginTop="470dp"
             android:layout_weight="1"
             android:background="@drawable/ic_gps" />
-        <!--마이페이지 이미지-->
-<!--        <ImageView-->
-<!--            android:id="@+id/mpImage"-->
-<!--            android:layout_width="286dp"-->
-<!--            android:layout_height="700dp"-->
-<!--            android:layout_alignParentStart="true"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:layout_marginStart="0dp"-->
-<!--            android:layout_marginTop="0dp"-->
-<!--            android:layout_marginEnd="0dp"-->
-<!--            android:layout_marginBottom="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="@drawable/ic_mypage_1" />-->
+
 
     </RelativeLayout>
 

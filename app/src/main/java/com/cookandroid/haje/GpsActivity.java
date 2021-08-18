@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Handler;
+import android.telephony.CarrierConfigManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -39,8 +40,14 @@ import net.daum.mf.map.api.MapView;
 public class GpsActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener{
 
     private static final String LOG_TAG = "GpsActivity";
-    //private MapView mapView;
-    //private ViewGroup mapViewContainer;
+
+    private static GpsActivity baseApplication;
+
+    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
+    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION};
+
+    //kakao map 띄우기
     MapView mapView;
     ViewGroup mapViewContainer;
 
@@ -53,31 +60,26 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     MapPolyline polyline;
     //로딩 다이얼로그
     AppCompatDialog progressDialog;
-    private static GpsActivity baseApplication;
 
-    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
-    private static final int PERMISSIONS_REQUEST_CODE = 100;
-    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION};
+    //이미지 버튼
+    ImageButton mapGpsButton;
+    ImageButton callButton;
+    ImageButton myPgButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_gps);
-        //지도를 띄우자
-        // java code
+        //지도 띄우기
         mapView = new MapView(this);
         mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);
         //마커 생성하기
-        //MapPOIItem marker = new MapPOIItem();
         marker = new MapPOIItem();
 
-        //맵 포인트 위도경도 설정
-        //MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(35.898054, 128.544296);
-
         //내 위치 보는 이미지 버튼 눌렸을 때
-        ImageButton mapGpsButton = findViewById(R.id.mapGpsButton);
+        mapGpsButton = findViewById(R.id.mapGpsButton);
         mapGpsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,65 +88,17 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
             }
         });
         //기사님 호출 이미지 버튼 눌렸을 때
-        ImageButton callButton = findViewById(R.id.callButton);
+        callButton = findViewById(R.id.callButton);
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //로딩 화면 띄우기
-                startProgress();
-                //로딩 화면 띄운 후 구현
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mapView.setMapViewEventListener(GpsActivity.this);
-                        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
-                        //토스트 메시지 띄우기
-                        Toast.makeText(GpsActivity.this, "가까운 위치의 기사님과 매칭했습니다.", Toast.LENGTH_LONG).show();
-                        //원 그리기
-                        circle1 = new MapCircle(
-                                MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894), //기사 위치
-                                200, // radius
-                                Color.argb(128, 91, 83, 215), // strokeColor
-                                Color.argb(128, 91, 83, 215) // fillColor
-                        );
-                        circle1.setTag(1234);
-                        mapView.addCircle(circle1);
-
-                        //이동 거리 그리기
-                        polyline = new MapPolyline();
-                        polyline.setTag(1000);
-                        polyline.setLineColor(Color.argb(128, 255, 202, 49)); // Polyline 컬러 지정.
-
-                        // Polyline 좌표 지정.
-                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894));//기사 위치
-                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57776660423137, 127.04851050890508));
-                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.577660318091816, 127.04885383167067));
-                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.5771203821599, 127.04848368681401));
-                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.576801125608455, 127.04906283355939));
-                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57578075917584, 127.04810796711756));
-                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.575721237369024, 127.04806505177184));
-                        //polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57622291967998, 127.04910574866106));//승객 위치
-
-                        // Polyline 지도에 올리기.
-                        mapView.addPolyline(polyline);
-
-                        //고정 위치 핀 찍기
-                        mapPoint = MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894);//기사 위치
-                        marker.setItemName("기사님 위치");
-                        marker.setTag(0);
-                        marker.setMapPoint(mapPoint);
-                        marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
-                        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-
-                        mapView.addPOIItem(marker);
-                    }
-                }, 3500);
-
+                //출발, 목적지 검색 인텐트로 넘어가기
+                Intent callIntent = new Intent(getApplicationContext(), CallDriverActivity.class);
+                startActivityForResult(callIntent, 101);
             }
         });
         //마이페이지 버튼 눌렸을 때
-        //마이페이지 인텐트로 이동
-        ImageButton myPgButton = findViewById(R.id.myPgButton);
+        myPgButton = findViewById(R.id.myPgButton);
         myPgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -280,6 +234,11 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //CallDriverActivity에서 호출하기 버튼 눌렀을 때
+        if(requestCode==101){
+            String name = data.getStringExtra("name");
+            markDriverPosition();
+        }
 
         switch (requestCode) {
             case GPS_ENABLE_REQUEST_CODE:
@@ -291,7 +250,6 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
                         return;
                     }
                 }
-                break;
         }
     }
 
@@ -345,6 +303,60 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     @Override
     public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
 
+    }
+    //기사님 위치 표시 함수
+    private void markDriverPosition(){
+        //call button 안보이게 하기
+        callButton.setVisibility(View.INVISIBLE);
+        //로딩 화면 띄우기
+        startProgress();
+        //로딩 화면 띄운 후 구현
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mapView.setMapViewEventListener(GpsActivity.this);
+                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+                //토스트 메시지 띄우기
+                Toast.makeText(GpsActivity.this, "가까운 위치의 기사님과 매칭했습니다.", Toast.LENGTH_LONG).show();
+                //원 그리기
+                circle1 = new MapCircle(
+                        MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894), //기사 위치
+                        200, // radius
+                        Color.argb(128, 91, 83, 215), // strokeColor
+                        Color.argb(128, 91, 83, 215) // fillColor
+                );
+                circle1.setTag(1234);
+                mapView.addCircle(circle1);
+
+                //이동 거리 그리기
+                polyline = new MapPolyline();
+                polyline.setTag(1000);
+                polyline.setLineColor(Color.argb(128, 255, 202, 49)); // Polyline 컬러 지정.
+
+                // Polyline 좌표 지정.
+                polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894));//기사 위치
+                polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57776660423137, 127.04851050890508));
+                polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.577660318091816, 127.04885383167067));
+                polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.5771203821599, 127.04848368681401));
+                polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.576801125608455, 127.04906283355939));
+                polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57578075917584, 127.04810796711756));
+                polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.575721237369024, 127.04806505177184));
+                //polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57622291967998, 127.04910574866106));//승객 위치
+
+                // Polyline 지도에 올리기.
+                mapView.addPolyline(polyline);
+
+                //고정 위치 핀 찍기
+                mapPoint = MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894);//기사 위치
+                marker.setItemName("기사님 위치");
+                marker.setTag(0);
+                marker.setMapPoint(mapPoint);
+                marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
+                marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+
+                mapView.addPOIItem(marker);
+            }
+        }, 3500);
     }
     //로딩 다이어로그 위한 함수
     private void startProgress(){

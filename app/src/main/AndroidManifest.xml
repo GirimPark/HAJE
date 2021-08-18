@@ -15,6 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+      
+        <activity android:name=".CallDriverActivity"></activity>
 
 
 
@@ -30,7 +32,6 @@
             android:theme="@style/AppTheme.LoginPage" />
 
         <activity android:name=".MyPageActivity"></activity>
-        
 
 
         <meta-data
@@ -61,10 +62,7 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".PaymentActivity"
-
-
             android:theme="@style/AppTheme.PaymentPage"/>
-
 
     </application>
 
