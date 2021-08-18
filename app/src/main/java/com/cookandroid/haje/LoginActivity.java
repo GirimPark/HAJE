@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
     public void login(){
         inputID = findViewById(R.id.inputID);
         inputPW = findViewById(R.id.inputPW);
@@ -73,6 +72,11 @@ public class LoginActivity extends AppCompatActivity {
                        Toast.makeText(this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                    }
                 });
+    }
+
+    public void onShowClick(View v){
+        Intent intent = new Intent(getApplicationContext(), ShowRideActivity.class);
+        startActivity(intent);
     }
 
 

@@ -48,7 +48,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="42dp"
         android:background="@drawable/kakao_login_large_wide"
-        />
+        android:onClick="onShowClick" />
 
     <ImageButton
         android:id="@+id/btnNaver"
