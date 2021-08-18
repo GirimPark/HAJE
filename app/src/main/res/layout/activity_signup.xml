@@ -115,6 +115,7 @@
 <!--                            android:textSize="13sp"-->
 <!--                            android:text="수동"/>-->
 <!--                    </RadioGroup>-->
+                    <RadioButton></RadioButton>
 
                 </TableRow>
 
