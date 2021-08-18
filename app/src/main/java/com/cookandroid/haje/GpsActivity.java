@@ -1,19 +1,31 @@
 package com.cookandroid.haje;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cookandroid.haje.R;
@@ -39,6 +51,9 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     MapCircle circle1;
     //지도에 이동 거리 그리기
     MapPolyline polyline;
+    //로딩 다이얼로그
+    AppCompatDialog progressDialog;
+    private static GpsActivity baseApplication;
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
@@ -54,8 +69,6 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         mapView = new MapView(this);
         mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
         mapViewContainer.addView(mapView);
-        mapView.setMapViewEventListener(this);
-        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
         //마커 생성하기
         //MapPOIItem marker = new MapPOIItem();
         marker = new MapPOIItem();
@@ -63,43 +76,82 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         //맵 포인트 위도경도 설정
         //MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(35.898054, 128.544296);
 
-        //원 그리기
-        circle1 = new MapCircle(
-                MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894), //기사 위치
-                200, // radius
-                Color.argb(128, 91, 83, 215), // strokeColor
-                Color.argb(128, 91, 83, 215) // fillColor
-        );
-        circle1.setTag(1234);
-        mapView.addCircle(circle1);
+        //내 위치 보는 이미지 버튼 눌렸을 때
+        ImageButton mapGpsButton = findViewById(R.id.mapGpsButton);
+        mapGpsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mapView.setMapViewEventListener(GpsActivity.this);
+                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+            }
+        });
+        //기사님 호출 이미지 버튼 눌렸을 때
+        ImageButton callButton = findViewById(R.id.callButton);
+        callButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //로딩 화면 띄우기
+                startProgress();
+                //로딩 화면 띄운 후 구현
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mapView.setMapViewEventListener(GpsActivity.this);
+                        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+                        //토스트 메시지 띄우기
+                        Toast.makeText(GpsActivity.this, "가까운 위치의 기사님과 매칭했습니다.", Toast.LENGTH_LONG).show();
+                        //원 그리기
+                        circle1 = new MapCircle(
+                                MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894), //기사 위치
+                                200, // radius
+                                Color.argb(128, 91, 83, 215), // strokeColor
+                                Color.argb(128, 91, 83, 215) // fillColor
+                        );
+                        circle1.setTag(1234);
+                        mapView.addCircle(circle1);
 
-        //이동 거리 그리기
-        polyline = new MapPolyline();
-        polyline.setTag(1000);
-        polyline.setLineColor(Color.argb(128, 255, 202, 49)); // Polyline 컬러 지정.
+                        //이동 거리 그리기
+                        polyline = new MapPolyline();
+                        polyline.setTag(1000);
+                        polyline.setLineColor(Color.argb(128, 255, 202, 49)); // Polyline 컬러 지정.
 
-        // Polyline 좌표 지정.
-        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894));//기사 위치
-        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57776660423137, 127.04851050890508));
-        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.577660318091816, 127.04885383167067));
-        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.5771203821599, 127.04848368681401));
-        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.576801125608455, 127.04906283355939));
-        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57578075917584, 127.04810796711756));
-        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.575721237369024, 127.04806505177184));
+                        // Polyline 좌표 지정.
+                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894));//기사 위치
+                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57776660423137, 127.04851050890508));
+                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.577660318091816, 127.04885383167067));
+                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.5771203821599, 127.04848368681401));
+                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.576801125608455, 127.04906283355939));
+                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57578075917584, 127.04810796711756));
+                        polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.575721237369024, 127.04806505177184));
+                        //polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57622291967998, 127.04910574866106));//승객 위치
 
-        //polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57622291967998, 127.04910574866106));//승객 위치
+                        // Polyline 지도에 올리기.
+                        mapView.addPolyline(polyline);
 
-        // Polyline 지도에 올리기.
-        mapView.addPolyline(polyline);
+                        //고정 위치 핀 찍기
+                        mapPoint = MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894);//기사 위치
+                        marker.setItemName("기사님 위치");
+                        marker.setTag(0);
+                        marker.setMapPoint(mapPoint);
+                        marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
+                        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 
-        mapPoint = MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894);//기사 위치
-        marker.setItemName("기사님 위치");
-        marker.setTag(0);
-        marker.setMapPoint(mapPoint);
-        marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
-        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+                        mapView.addPOIItem(marker);
+                    }
+                }, 3500);
 
-        mapView.addPOIItem(marker);
+            }
+        });
+        //마이페이지 버튼 눌렸을 때
+        //마이페이지 인텐트로 이동
+        ImageButton myPgButton = findViewById(R.id.myPgButton);
+        myPgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+                startActivity(intent);
+            }
+        });
 
         if (!checkLocationServicesStatus()) {
             showDialogForLocationServiceSetting();
@@ -293,5 +345,100 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     @Override
     public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
 
+    }
+    //로딩 다이어로그 위한 함수
+    private void startProgress(){
+        //progressON(GpsActivity.this,"기사님과 매칭중입니다.");
+        //로딩 다이얼로그 띄우기
+        Activity activity = GpsActivity.this;
+        String message = "기사님과 매칭 중입니다.";
+        if (activity == null || activity.isFinishing()) {
+            return;
+        }
+
+
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressSET(message);
+        } else {
+
+            progressDialog = new AppCompatDialog(activity);
+            progressDialog.setCancelable(false);
+            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            progressDialog.setContentView(R.layout.activity_gps);
+            progressDialog.show();
+
+        }
+
+
+        final ImageView img_loading_frame = (ImageView) progressDialog.findViewById(R.id.loadingImage);
+        img_loading_frame.setVisibility(View.VISIBLE);
+        final AnimationDrawable frameAnimation = (AnimationDrawable) img_loading_frame.getBackground();
+        img_loading_frame.post(new Runnable() {
+            @Override
+            public void run() {
+                frameAnimation.start();
+            }
+        });
+
+        TextView tv_progress_message = (TextView) progressDialog.findViewById(R.id.lodingText);
+        if (!TextUtils.isEmpty(message)) {
+            tv_progress_message.setText(message);
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressOFF();
+            }
+        }, 3500);
+    }
+
+    public void progressON(Activity activity, String message) {
+
+        if (activity == null || activity.isFinishing()) {
+            return;
+        }
+
+
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressSET(message);
+        } else {
+
+            progressDialog = new AppCompatDialog(activity);
+            progressDialog.setCancelable(false);
+            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            progressDialog.setContentView(R.layout.activity_gps);
+            progressDialog.show();
+
+        }
+
+
+        final ImageView img_loading_frame = (ImageView) progressDialog.findViewById(R.id.loadingImage);
+        final AnimationDrawable frameAnimation = (AnimationDrawable) img_loading_frame.getBackground();
+        img_loading_frame.post(new Runnable() {
+            @Override
+            public void run() {
+                frameAnimation.start();
+            }
+        });
+
+        TextView tv_progress_message = (TextView) progressDialog.findViewById(R.id.lodingText);
+        if (!TextUtils.isEmpty(message)) {
+            tv_progress_message.setText(message);
+        }
+    }
+    public void progressSET(String message) {
+        if (progressDialog == null || !progressDialog.isShowing()) {
+            return;
+        }
+        TextView tv_progress_message = (TextView) progressDialog.findViewById(R.id.lodingText);
+        if (!TextUtils.isEmpty(message)) {
+            tv_progress_message.setText(message);
+        }
+    }
+    public void progressOFF() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 }
