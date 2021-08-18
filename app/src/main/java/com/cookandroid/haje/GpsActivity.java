@@ -93,9 +93,9 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
             @Override
             public void onClick(View view) {
                 //출발, 목적지 검색 인텐트로 넘어가기
-                Intent intent = new Intent(getApplicationContext(), DriverCallActivity.class);
-                startActivity(intent);
-                //startActivityForResult(callIntent, 101);
+                Intent callIntent = new Intent(getApplicationContext(), DriverCallActivity.class);
+
+                startActivityForResult(callIntent, 101);
             }
         });
         //마이페이지 버튼 눌렸을 때
