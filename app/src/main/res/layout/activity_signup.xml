@@ -96,25 +96,25 @@
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp" />
 
-                    <RadioGroup
-                        android:id="@+id/rGroup"
-                        android:layout_marginTop="47dp"
-                        android:orientation="horizontal"
-                        android:theme="@style/CustomRadioTheme">
-                        <RadioButton
-                            android:id="@+id/rBtn1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:layout_marginRight="8dp"
-                            android:text="자동"/>
-                        <RadioButton
-                            android:id="@+id/rBtn2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="13sp"
-                            android:text="수동"/>
-                    </RadioGroup>
+<!--                    <RadioGroup-->
+<!--                        android:id="@+id/rGroup"-->
+<!--                        android:layout_marginTop="47dp"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:theme="@style/CustomRadioTheme">-->
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/rBtn1"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textSize="13sp"-->
+<!--                            android:layout_marginRight="8dp"-->
+<!--                            android:text="자동"/>-->
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/rBtn2"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textSize="13sp"-->
+<!--                            android:text="수동"/>-->
+<!--                    </RadioGroup>-->
 
                 </TableRow>
 

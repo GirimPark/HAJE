@@ -2,7 +2,7 @@ package com.cookandroid.haje;
 
 public class User {
 
-    Integer user_id;
+//    static int serial_num = 0;
     String number;
     String email;
     String name;
@@ -11,11 +11,14 @@ public class User {
     String car;
     String guardian_number;
 
-    public User(Integer user_id, String number,
+    public User(){
+
+    }
+
+    public User(String number,
                 String email, String name,
                 String password, boolean auto_or_manual,
                 String car, String guardian_number){
-        this.user_id = user_id;
         this.number = number;
         this.email = email;
         this.name = name;
@@ -26,9 +29,6 @@ public class User {
     }
 
 
-    public Integer getUser_id() {
-        return user_id;
-    }
     public String getCar() {
         return car;
     }
@@ -71,9 +71,6 @@ public class User {
     }
     public void setPassword(String password) {
         this.password = password;
-    }
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
     }
 
 }
