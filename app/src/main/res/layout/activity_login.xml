@@ -10,6 +10,7 @@
         android:id="@+id/inputID"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
         android:layout_marginLeft="115dp"
         android:layout_marginTop="225dp"
         android:backgroundTint="@color/mainPurple"
@@ -47,7 +48,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="42dp"
         android:background="@drawable/kakao_login_large_wide"
-        />
+        android:onClick="onShowClick" />
 
     <ImageButton
         android:id="@+id/btnNaver"

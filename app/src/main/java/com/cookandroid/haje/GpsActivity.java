@@ -95,9 +95,13 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent emailIntent = getIntent();
+                String email = emailIntent.getStringExtra("email");
+                Log.d("인텐트 값 넘기기", email);
                 //출발, 목적지 검색 인텐트로 넘어가기
-                Intent intent = new Intent(getApplicationContext(), DriverCallActivity.class);
-                startActivityForResult(intent, 101);
+                Intent callIntent = new Intent(getApplicationContext(), DriverCallActivity.class);
+                callIntent.putExtra("email", email);
+                startActivityForResult(callIntent, 101);
             }
         });
 
