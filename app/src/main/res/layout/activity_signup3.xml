@@ -17,18 +17,19 @@
         android:background="@drawable/ic_pass"
         android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/PassName"
-        android:layout_width="251dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="220dp"
+        <EditText
+            android:id="@+id/PassName"
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="215dp"
+            android:layout_marginLeft="25dp"
 
 
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/ic_input_box"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_input_box"
 
-        android:textSize="15sp" />
+            android:textSize="15sp" />
 
 
     <LinearLayout
@@ -60,25 +61,25 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/PassNumber"
-        android:layout_width="251dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="18dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginBottom="5dp"
-        android:inputType="number"
-        android:background="@drawable/ic_input_box"
-        android:textSize="15sp" />
+        <EditText
+            android:id="@+id/PassNumber"
+            android:layout_width="209dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/ic_input_box"
+            android:inputType="number"
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/PassSecurity"
             android:layout_width="105dp"
-            android:layout_height="wrap_content"
+            android:layout_height="21dp"
             android:layout_gravity="center"
             android:layout_marginLeft="55dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/ic_input_box"
             android:inputType="number"
