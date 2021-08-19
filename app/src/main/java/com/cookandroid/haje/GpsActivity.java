@@ -202,22 +202,22 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     public void onRideButtonClicked(View v){
         Toast.makeText(this, "카카오내비로 안내합니다", Toast.LENGTH_LONG).show();
 
-//        Intent breakdownIntent = getIntent();
-//        Breakdown breakdown = (Breakdown) breakdownIntent.getSerializableExtra("breakdown");
-
         // 객체 탑승시간 수정
         Date now = new Date();
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.KOREA);
         String startTime = timeFormat.format(now);
 
         breakdown.setStartTime(startTime);
+        String destination = breakdown.getDestination();
 
         startActivity(
                 NaviClient.getInstance().shareDestinationIntent(
-                        new Location(breakdown.getDestination(), "37.62826552802066", "127.0904353396929"),
+                        new Location(destination, "127.09039242435075", "37.62826552802066"),
                         new NaviOption(CoordType.WGS84)
                 )
         );
+
+
     }
 
     @Override
