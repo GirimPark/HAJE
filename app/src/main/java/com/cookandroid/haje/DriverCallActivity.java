@@ -34,9 +34,7 @@ public class DriverCallActivity extends AppCompatActivity {
     EditText StartPoint;
     EditText EndPoint;
     TextView CarType;
-
     TextView guardian_number;
-
     ImageButton btnNext;
 
     Intent emailIntent;
@@ -57,7 +55,6 @@ public class DriverCallActivity extends AppCompatActivity {
         StartPoint = findViewById(R.id.StartPoint);
         EndPoint = findViewById(R.id.EndPoint);
         CarType = findViewById(R.id.CarType);
-
         guardian_number = findViewById(R.id.guardian_number);
         btnNext = findViewById(R.id.btnNext);
 
