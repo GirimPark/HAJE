@@ -30,6 +30,13 @@
         <item name="android:windowBackground">@drawable/ic_bg_signup2</item>
     </style>
 
+    <style name="AppTheme.myPage2">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/mainPurple</item>
+        <item name="android:windowBackground">@drawable/bg_my_page2</item>
+    </style>
+
     <style name="AppTheme.SplashPage">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

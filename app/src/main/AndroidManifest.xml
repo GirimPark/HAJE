@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".MyPage2"></activity>
+        <activity android:name=".MyPage2"
+            android:theme="@style/AppTheme.myPage2"></activity>
 
         <activity android:name=".WebViewActivity"></activity>
 

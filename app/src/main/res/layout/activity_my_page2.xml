@@ -4,16 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MyPage2">
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:background="@drawable/ic_mymypage"
-        android:elevation="20dp">
 
         <ImageButton
             android:id="@+id/btnPrev"
@@ -23,19 +15,18 @@
             android:layout_marginTop="21dp"
             android:background="@drawable/ic_btn_return_prev" />
 
-
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/cardbackground2"
-
-            android:gravity="center"
+            android:layout_width="380dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/box"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="300dp"
+                android:layout_width="320dp"
+                android:layout_marginTop="24dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
 
@@ -52,14 +43,14 @@
                     android:id="@+id/btnRemove"
                     android:layout_width="35dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="170dp"
+                    android:layout_marginLeft="197dp"
                     android:background="@color/fui_transparent"
                     android:text="삭제"
                     android:textColor="@color/mainRed" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="300dp"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
 
@@ -73,7 +64,7 @@
                     android:id="@+id/tv_ridePlace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="23dp"
+                    android:layout_marginLeft="34dp"
                     android:text="서울특별시 노원구 화랑로 621" />
 
             </LinearLayout>
@@ -82,14 +73,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_marginLeft="48dp"
+                android:layout_marginLeft="55dp"
                 android:layout_marginTop="10dp"
                 android:scaleX="1.3"
                 android:scaleY="1.3"
                 android:src="@drawable/ic_arrow" />
 
             <LinearLayout
-                android:layout_width="300dp"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
 
@@ -103,14 +94,12 @@
                     android:id="@+id/tv_destination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="23dp"
+                    android:layout_marginLeft="34dp"
                     android:text="서울특별시 서대문구 이화여대길 52" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-
-    </LinearLayout>
 
 </LinearLayout>
