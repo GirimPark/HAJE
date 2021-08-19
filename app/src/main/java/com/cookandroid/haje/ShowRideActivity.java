@@ -41,6 +41,6 @@ public class ShowRideActivity extends AppCompatActivity {
         uuid = uuidIntent.getStringExtra("uuid");
 
         recyclerView.setAdapter(new RecyclerAdapter(getApplicationContext(), items, R.layout.activity_show_ride, db, uuid));
-
     }
+
 }
