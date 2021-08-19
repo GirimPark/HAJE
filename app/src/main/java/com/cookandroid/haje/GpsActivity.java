@@ -13,16 +13,20 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Handler;
 import android.telephony.CarrierConfigManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,6 +36,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cookandroid.haje.R;
+
+import com.google.android.material.navigation.NavigationView;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kakao.sdk.common.util.KakaoCustomTabsClient;
 import com.kakao.sdk.navi.NaviClient;
@@ -39,11 +46,13 @@ import com.kakao.sdk.navi.model.CoordType;
 import com.kakao.sdk.navi.model.Location;
 import com.kakao.sdk.navi.model.NaviOption;
 
+
 import net.daum.mf.map.api.MapCircle;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapPolyline;
 import net.daum.mf.map.api.MapView;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,13 +60,14 @@ import java.util.Locale;
 
 public class GpsActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener{
 
+
     private static final String LOG_TAG = "GpsActivity";
 
     private static GpsActivity baseApplication;
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
-    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION};
+    String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION};
 
     //kakao map 띄움
     MapView mapView;
@@ -121,19 +131,23 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         });
 
         //매칭 수락&거절 버튼 안보이게_추가
+
         rideButton = findViewById(R.id.rideButton);
         arriveButton = findViewById(R.id.arriveButton);
         if(callButton.getVisibility()==View.VISIBLE){
             rideButton.setVisibility(View.INVISIBLE);
             arriveButton.setVisibility(View.INVISIBLE);
+
         }
         //마이페이지 버튼 눌렸을 때
         myPgButton = findViewById(R.id.myPgButton);
         myPgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
-                startActivity(intent);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout) ;
+                View myPageDrawer = (View) findViewById(R.id.drawer);
+
+                drawer.openDrawer(myPageDrawer);
             }
         });
 
@@ -179,7 +193,7 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
 
         if (!checkLocationServicesStatus()) {
             showDialogForLocationServiceSetting();
-        }else {
+        } else {
             checkRunTimePermission();
         }
     }
@@ -188,22 +202,22 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     public void onRideButtonClicked(View v){
         Toast.makeText(this, "카카오내비로 안내합니다", Toast.LENGTH_LONG).show();
 
-//        Intent breakdownIntent = getIntent();
-//        Breakdown breakdown = (Breakdown) breakdownIntent.getSerializableExtra("breakdown");
-
         // 객체 탑승시간 수정
         Date now = new Date();
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.KOREA);
         String startTime = timeFormat.format(now);
 
         breakdown.setStartTime(startTime);
+        String destination = breakdown.getDestination();
 
         startActivity(
                 NaviClient.getInstance().shareDestinationIntent(
-                        new Location(breakdown.getDestination(), "37.62826552802066", "127.0904353396929"),
+                        new Location(destination, "127.09039242435075", "37.62826552802066"),
                         new NaviOption(CoordType.WGS84)
                 )
         );
+
+
     }
 
     @Override
@@ -217,6 +231,7 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         MapPoint.GeoCoordinate mapPointGeo = currentLocation.getMapPointGeoCoord();
         Log.i(LOG_TAG, String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, accuracyInMeters));
     }
+
     @Override
     public void onCurrentLocationDeviceHeadingUpdate(MapView mapView, float v) {
     }
@@ -269,14 +284,15 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
             }
         }
     }
-    void checkRunTimePermission(){
+
+    void checkRunTimePermission() {
 
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
         int hasFineLocationPermission = ContextCompat.checkSelfPermission(GpsActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
 
-        if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED ) {
+        if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED) {
             // 2. 이미 퍼미션을 가지고 있다면
             // ( 안드로이드 6.0 이하 버전은 런타임 퍼미션이 필요없기 때문에 이미 허용된 걸로 인식합니다.)
             // 3.  위치 값을 가져올 수 있음
@@ -327,7 +343,7 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //CallDriverActivity에서 호출하기 버튼 눌렀을 때
-        if(requestCode==101){
+        if (requestCode == 101) {
             String name = data.getStringExtra("name");
             breakdown = (Breakdown) data.getSerializableExtra("breakdown");
             markDriverPosition();
@@ -397,8 +413,9 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
 
     }
+
     //기사님 위치 표시 함수
-    private void markDriverPosition(){
+    private void markDriverPosition() {
         //call button 안보이게 하기
         callButton.setVisibility(View.INVISIBLE);
         //매칭 수락&거절 버튼 보이게 하기
@@ -498,10 +515,10 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
 
 
     }
+
     //로딩 다이어로그 위한 함수
-    private void startProgress(){
-        //콜 버튼 안보이게 하기
-        //callButton.setVisibility(View.GONE);
+
+    private void startProgress() {
         //progressON(GpsActivity.this,"기사님과 매칭중입니다.");
         //로딩 다이얼로그 띄우기
         Activity activity = GpsActivity.this;
@@ -509,7 +526,6 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         if (activity == null || activity.isFinishing()) {
             return;
         }
-
 
         if (progressDialog != null && progressDialog.isShowing()) {
             progressSET(message);
@@ -531,11 +547,6 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
                 frameAnimation.start();
             }
         });
-
-        TextView tv_progress_message = (TextView) progressDialog.findViewById(R.id.lodingText);
-        if (!TextUtils.isEmpty(message)) {
-            tv_progress_message.setText(message);
-        }
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -561,9 +572,7 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
             progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             progressDialog.setContentView(R.layout.activity_gps);
             progressDialog.show();
-
         }
-
 
         final ImageView img_loading_frame = (ImageView) progressDialog.findViewById(R.id.loadingImage);
         final AnimationDrawable frameAnimation = (AnimationDrawable) img_loading_frame.getBackground();
@@ -574,23 +583,19 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
             }
         });
 
-        TextView tv_progress_message = (TextView) progressDialog.findViewById(R.id.lodingText);
-        if (!TextUtils.isEmpty(message)) {
-            tv_progress_message.setText(message);
-        }
     }
+
     public void progressSET(String message) {
         if (progressDialog == null || !progressDialog.isShowing()) {
             return;
         }
-        TextView tv_progress_message = (TextView) progressDialog.findViewById(R.id.lodingText);
-        if (!TextUtils.isEmpty(message)) {
-            tv_progress_message.setText(message);
-        }
     }
+
     public void progressOFF() {
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
     }
+
+
 }

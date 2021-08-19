@@ -15,25 +15,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".ShowRideActivity"
-            android:theme="@style/AppTheme.ShowRidePage"></activity>
-
-        <activity android:name=".DriverCallActivity"
-            android:theme="@style/AppTheme.Drivercall">
-        </activity>
-
-        <activity android:name=".SignupActivity3"
+        <activity android:name=".WebViewActivity"></activity>
+        <activity
+            android:name=".ShowRideActivity"
+            android:theme="@style/AppTheme.ShowRidePage" />
+        <activity
+            android:name=".DriverCallActivity"
+            android:theme="@style/AppTheme.Drivercall"></activity>
+        <activity
+            android:name=".SignupActivity3"
             android:theme="@style/AppTheme.SignUpPage3" />
-
         <activity android:name=".MyPageActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="49b0f46f5cab7ddf1154d8c0399dabe0" />
 
-        <activity android:name=".GpsActivity"
-            android:theme="@style/AppTheme.SignUpPage3"/>
+        <activity
+            android:name=".GpsActivity"
+            android:theme="@style/AppTheme.SignUpPage3" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.LoginPage" />
