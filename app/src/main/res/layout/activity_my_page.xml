@@ -6,9 +6,14 @@
     android:layout_width="320dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
+
     android:background="@color/white"
-    tools:context=".MyPageActivity"
-    android:orientation="vertical">
+    
+
+    
+    android:orientation="vertical"
+    tools:context=".MyPageActivity">
+
 
     <ImageView
         android:id="@+id/bg"
@@ -18,12 +23,16 @@
 
     <ImageButton
         android:id="@+id/btn_show_ride"
+
         android:layout_width="60dp"
         android:layout_height="16dp"
         android:layout_alignTop="@+id/bg"
         android:layout_alignStart="@id/bg"
         android:layout_marginStart="66dp"
         android:layout_marginTop="217dp"
-        android:background="@drawable/ic_btn_ride"/>
+       
+
+        android:background="@drawable/ic_btn_ride" />
+
 
 </RelativeLayout>
