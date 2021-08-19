@@ -188,8 +188,8 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     public void onRideButtonClicked(View v){
         Toast.makeText(this, "카카오내비로 안내합니다", Toast.LENGTH_LONG).show();
 
-        Intent breakdownIntent = getIntent();
-        Breakdown breakdown = (Breakdown) breakdownIntent.getSerializableExtra("breakdown");
+//        Intent breakdownIntent = getIntent();
+//        Breakdown breakdown = (Breakdown) breakdownIntent.getSerializableExtra("breakdown");
 
         // 객체 탑승시간 수정
         Date now = new Date();
