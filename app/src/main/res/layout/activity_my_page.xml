@@ -3,21 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer"
-    android:layout_width="327dp"
-    android:layout_height="720dp"
+    android:layout_width="320dp"
+    android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:background="@drawable/bg_mypage"
+    android:background="@color/white"
     tools:context=".MyPageActivity"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_mypage"/>
+
     <ImageButton
         android:id="@+id/btn_show_ride"
-        android:layout_width="63dp"
-        android:layout_height="17dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="213dp"
+        android:layout_width="60dp"
+        android:layout_height="16dp"
+        android:layout_alignTop="@+id/bg"
+        android:layout_alignStart="@id/bg"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="217dp"
         android:background="@drawable/ic_btn_ride"/>
 
 </RelativeLayout>
