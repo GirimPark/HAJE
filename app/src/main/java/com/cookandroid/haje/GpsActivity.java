@@ -59,7 +59,7 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION};
 
-    //kakao map 띄우기
+    //kakao map 띄움
     MapView mapView;
     ViewGroup mapViewContainer;
 
@@ -500,6 +500,8 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     }
     //로딩 다이어로그 위한 함수
     private void startProgress(){
+        //콜 버튼 안보이게 하기
+        //callButton.setVisibility(View.GONE);
         //progressON(GpsActivity.this,"기사님과 매칭중입니다.");
         //로딩 다이얼로그 띄우기
         Activity activity = GpsActivity.this;
@@ -512,7 +514,6 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         if (progressDialog != null && progressDialog.isShowing()) {
             progressSET(message);
         } else {
-
             progressDialog = new AppCompatDialog(activity);
             progressDialog.setCancelable(false);
             progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -520,7 +521,6 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
             progressDialog.show();
 
         }
-
 
         final ImageView img_loading_frame = (ImageView) progressDialog.findViewById(R.id.loadingImage);
         img_loading_frame.setVisibility(View.VISIBLE);
