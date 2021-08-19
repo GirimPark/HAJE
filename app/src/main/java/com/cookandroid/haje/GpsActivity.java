@@ -214,7 +214,7 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
 
         startActivity(
                 NaviClient.getInstance().shareDestinationIntent(
-                        new Location(destination, "127.09039242435075", "37.62826552802066"),
+                        new Location("서울여자대학교", "127.09039242435075", "37.62826552802066"),
                         new NaviOption(CoordType.WGS84)
                 )
         );
