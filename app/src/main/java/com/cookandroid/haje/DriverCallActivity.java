@@ -35,6 +35,8 @@ public class DriverCallActivity extends AppCompatActivity {
     EditText EndPoint;
     TextView CarType;
     TextView guardian_number;
+    TextView point;
+    TextView paypoint;
     ImageButton btnNext;
 
     Intent emailIntent;
@@ -56,10 +58,15 @@ public class DriverCallActivity extends AppCompatActivity {
         EndPoint = findViewById(R.id.EndPoint);
         CarType = findViewById(R.id.CarType);
         guardian_number = findViewById(R.id.guardian_number);
+        point = findViewById(R.id.point);
+        paypoint = findViewById(R.id.paypoint);
         btnNext = findViewById(R.id.btnNext);
 
 
         setData(db, email); //  차 기종, 보호자 번호 받아오면 됨
+        point.setText("50,000");
+        paypoint.setText("20,000");
+
 
         btnNext.setOnClickListener(new View.OnClickListener(){
             @Override
