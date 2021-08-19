@@ -62,4 +62,7 @@ dependencies {
     // CardView
     implementation "androidx.cardview:cardview:1.0.0"
 
+    //drawerLayout
+    implementation "androidx.drawerlayout:drawerlayout:1.1.1"
+
 }
