@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
@@ -32,6 +33,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,8 +82,8 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     MapCircle circle1;
     //지도에 이동 거리 그리기
     MapPolyline polyline;
-    //로딩 다이얼로그
-    AppCompatDialog progressDialog;
+    //프로그레스바
+    ProgressBar loadingProgressBar;
 
     //이미지 버튼
     ImageButton mapGpsButton;
@@ -346,6 +348,17 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         if (requestCode == 101) {
             String name = data.getStringExtra("name");
             breakdown = (Breakdown) data.getSerializableExtra("breakdown");
+            //프로그레스 바 보여주기
+            loadingProgressBar = findViewById(R.id.loadingProgressBar);
+            loadingProgressBar.setVisibility(View.VISIBLE);
+            loadingProgressBar.getIndeterminateDrawable().setColorFilter(Color.rgb(149, 95, 237), PorterDuff.Mode.MULTIPLY);
+            loadingProgressBar.setProgress(35);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loadingProgressBar.setVisibility(View.GONE);
+                }
+            }, 3500);
             markDriverPosition();
         }
 
@@ -421,8 +434,7 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         //매칭 수락&거절 버튼 보이게 하기
         rideButton.setVisibility(View.VISIBLE);
         arriveButton.setVisibility(View.VISIBLE);
-        //로딩 화면 띄우기
-        startProgress();
+
         mapView.setMapViewEventListener(GpsActivity.this);
         mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
         //로딩 화면 띄운 후 구현
@@ -514,87 +526,5 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
 
 
     }
-
-    //로딩 다이어로그 위한 함수
-
-    private void startProgress() {
-        //progressON(GpsActivity.this,"기사님과 매칭중입니다.");
-        //로딩 다이얼로그 띄우기
-        Activity activity = GpsActivity.this;
-        String message = "기사님과 매칭 중입니다.";
-        if (activity == null || activity.isFinishing()) {
-            return;
-        }
-
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressSET(message);
-        } else {
-            progressDialog = new AppCompatDialog(activity);
-            progressDialog.setCancelable(false);
-            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            progressDialog.setContentView(R.layout.activity_gps);
-            progressDialog.show();
-
-        }
-
-        final ImageView img_loading_frame = (ImageView) progressDialog.findViewById(R.id.loadingImage);
-        img_loading_frame.setVisibility(View.VISIBLE);
-        final AnimationDrawable frameAnimation = (AnimationDrawable) img_loading_frame.getBackground();
-        img_loading_frame.post(new Runnable() {
-            @Override
-            public void run() {
-                frameAnimation.start();
-            }
-        });
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                progressOFF();
-            }
-        }, 3500);
-    }
-
-    public void progressON(Activity activity, String message) {
-
-        if (activity == null || activity.isFinishing()) {
-            return;
-        }
-
-
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressSET(message);
-        } else {
-
-            progressDialog = new AppCompatDialog(activity);
-            progressDialog.setCancelable(false);
-            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            progressDialog.setContentView(R.layout.activity_gps);
-            progressDialog.show();
-        }
-
-        final ImageView img_loading_frame = (ImageView) progressDialog.findViewById(R.id.loadingImage);
-        final AnimationDrawable frameAnimation = (AnimationDrawable) img_loading_frame.getBackground();
-        img_loading_frame.post(new Runnable() {
-            @Override
-            public void run() {
-                frameAnimation.start();
-            }
-        });
-
-    }
-
-    public void progressSET(String message) {
-        if (progressDialog == null || !progressDialog.isShowing()) {
-            return;
-        }
-    }
-
-    public void progressOFF() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
-        }
-    }
-
 
 }
