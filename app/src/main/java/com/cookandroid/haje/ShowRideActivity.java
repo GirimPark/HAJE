@@ -19,11 +19,11 @@ import java.util.List;
 
 public class ShowRideActivity extends AppCompatActivity {
 
-    final int ITEM_SIZE = 5;
-
-    FirebaseFirestore db;
-    Intent uuidIntent;
-    String uuid;
+//    final int ITEM_SIZE = 5;
+//
+//    FirebaseFirestore db;
+//    Intent uuidIntent;
+//    String uuid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
