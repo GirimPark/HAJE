@@ -1,121 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     tools:context=".DriverCallActivity">
-
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_drivercall3"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="808dp"
+                android:background="@drawable/bg_drivercall" />
 
             <EditText
                 android:id="@+id/StartPoint"
-                android:layout_width="230dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="28dp"
-                android:layout_marginTop="190dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/ic_input_box"
-                android:hint="출발지를 입력하세요."
-                android:textSize="15sp"
-                android:textStyle="italic" />
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="102dp"
+                android:layout_marginTop="185dp"
+                android:backgroundTint="@color/mainPurple"
+                android:hint="출발지를 입력하세요"
+                android:textSize="12sp" />
+
+            <ImageButton
+                android:id="@+id/btnSearchStartPoint"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignTop="@id/StartPoint"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/StartPoint"
+                android:background="@drawable/ic_btn_search" />
 
             <EditText
                 android:id="@+id/EndPoint"
-                android:layout_width="230dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="28dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="40dp"
-                android:background="@drawable/ic_input_box"
-                android:hint="도착지를 입력하세요."
-                android:textSize="15sp"
-                android:textStyle="italic"/>
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="102dp"
+                android:layout_marginTop="255dp"
+                android:backgroundTint="@color/mainPurple"
+                android:hint="도착지를 입력하세요"
+                android:textSize="12sp" />
 
-            <TextView
+            <ImageButton
+                android:id="@+id/btnSearchEndPoint"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignTop="@id/EndPoint"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/EndPoint"
+                android:background="@drawable/ic_btn_search" />
+
+            <EditText
                 android:id="@+id/CarType"
-                android:layout_width="230dp"
-                android:layout_height="21dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="28dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="350dp"
+                android:layout_marginEnd="44dp"
+                android:backgroundTint="@color/mainPurple"
+                android:textSize="12sp" />
 
-                android:layout_marginTop="14dp"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/ic_input_box"
-                 />
-
-
-            <TextView
+            <EditText
                 android:id="@+id/guardian_number"
-                android:layout_width="199dp"
-                android:layout_height="21dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="40dp"
-
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="38dp"
-                android:background="@drawable/ic_input_box" />
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="420dp"
+                android:layout_marginEnd="44dp"
+                android:backgroundTint="@color/mainPurple"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/point"
-                android:layout_width="120dp"
-                android:layout_height="21dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="40dp"
-                android:background="@drawable/ic_input_box" />
-
-
-<!--            <TextView-->
-<!--                android:id="@+id/nowpoint"-->
-<!--                android:layout_width="120dp"-->
-<!--                android:layout_height="21dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginLeft="40dp"-->
-<!--                android:layout_marginTop="10dp"-->
-
-<!--                android:background="@drawable/ic_input_box" />-->
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="504dp"
+                android:layout_marginEnd="44dp"
+                android:backgroundTint="@color/mainPurple"
+                android:gravity="right"
+                android:text="20,000원"
+                android:textColor="@color/black"
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/paypoint"
-                android:layout_width="190dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="38dp"
-                android:layout_marginBottom="100dp"
-                android:background="@drawable/ic_input_box" />
-
-
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="620dp"
+                android:layout_marginEnd="44dp"
+                android:backgroundTint="@color/mainPurple"
+                android:gravity="right"
+                android:text="42,000원"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
 
             <ImageButton
                 android:id="@+id/btnNext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="24dp"
-                android:background="@drawable/ic_callcall" />
+                android:layout_width="364dp"
+                android:layout_height="34.2dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="714dp"
+                android:background="@drawable/btn_call_driver_selector"/>
 
+        </RelativeLayout>
 
-
-        </LinearLayout>
     </ScrollView>
 
 
