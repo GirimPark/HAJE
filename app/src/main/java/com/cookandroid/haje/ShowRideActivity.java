@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -28,6 +30,20 @@ public class ShowRideActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_ride);
 
+        ImageButton btnPrev =findViewById(R.id.btnPrev);
+
+        btnPrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GpsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+/*
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setHasFixedSize(true);
@@ -41,6 +57,11 @@ public class ShowRideActivity extends AppCompatActivity {
         uuid = uuidIntent.getStringExtra("uuid");
 
         recyclerView.setAdapter(new RecyclerAdapter(getApplicationContext(), items, R.layout.activity_show_ride, db, uuid));
+
+*/
+   }
+
     }
+
 
 }

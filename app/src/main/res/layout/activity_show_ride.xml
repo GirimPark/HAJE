@@ -9,31 +9,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:gravity="center_vertical"
-        android:background="@color/white"
+        android:layout_height="match_parent"
+
+        android:background="@drawable/ic_mymypage"
         android:elevation="20dp">
 
         <ImageButton
             android:id="@+id/btnPrev"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/ic_btn_return_prev"/>
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/ic_btn_return_prev" />
 
-       <ImageView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:scaleY="1.14"
-           android:scaleX="1.14"
-           android:layout_marginLeft="135dp"
-           android:src="@drawable/ic_text_ride"/>
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 </LinearLayout>
