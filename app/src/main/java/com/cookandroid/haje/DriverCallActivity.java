@@ -39,7 +39,9 @@ public class DriverCallActivity extends AppCompatActivity {
     TextView paypoint;
     ImageButton btnNext;
 
-    Intent emailIntent;
+    Breakdown breakdown;
+
+    Intent callIntent;
     String email;
 
     @Override
@@ -50,8 +52,8 @@ public class DriverCallActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        emailIntent = getIntent();
-        email = emailIntent.getStringExtra("email");
+        callIntent = getIntent();
+        email = callIntent.getStringExtra("email");
 
 
         StartPoint = findViewById(R.id.StartPoint);
@@ -71,9 +73,12 @@ public class DriverCallActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                putPoint(db, StartPoint.getText().toString(), EndPoint.getText().toString());
+                breakdown = setPoint(StartPoint.getText().toString(), EndPoint.getText().toString());
+                Log.d("내역객체 만들기", breakdown.getUser_email());
                 Intent intent = new Intent(getApplicationContext(), GpsActivity.class);
                 intent.putExtra("name", "mike");
+                intent.putExtra("breakdown", breakdown);
+                callIntent.putExtra("breakdown", breakdown);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }
@@ -100,7 +105,7 @@ public class DriverCallActivity extends AppCompatActivity {
     }
 
 
-    public void putPoint(FirebaseFirestore db, String startPoint, String endPoint){
+    public Breakdown setPoint(String startPoint, String endPoint){
         if(startPoint.isEmpty() || endPoint.isEmpty()){
             Toast.makeText(this, "출발지와 도착지를 입력해주세요", Toast.LENGTH_LONG).show();
         }
@@ -112,25 +117,27 @@ public class DriverCallActivity extends AppCompatActivity {
 
         String id = new UUIDgeneration().getUUID();
         String date = dayFormat.format(now);
-        String startTime = timeFormat.format(now);
-        String endTime = timeFormat.format(now);
+        String startTime = timeFormat.format(now);  //  탑승버튼 누른 후 수정할 것
+        String endTime = timeFormat.format(now);    //  도착버튼 누른 후 수정할 것
         String user_email = email;
         String departure = startPoint;
         String destination = endPoint;
         int price = 20000;
         boolean safe_message = true;
 
-        Breakdown breakdown = new Breakdown(id, date, startTime, endTime,
+        breakdown = new Breakdown(id, date, startTime, endTime,
                 user_email, departure, destination, price, safe_message);
-        db.collection("breakdown").document(id).set(breakdown)
-        .addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
-                Log.d("db접근 내역 넣기 성공", breakdown.getId());
-            }
-            else{
-                Log.d("db접근 내역 넣기 실패", task.getException().getMessage());
-            }
-        });
+
+        return breakdown;
+//        db.collection("breakdown").document(id).set(breakdown)
+//        .addOnCompleteListener(task -> {
+//            if(task.isSuccessful()){
+//                Log.d("db접근 내역 넣기 성공", breakdown.getId());
+//            }
+//            else{
+//                Log.d("db접근 내역 넣기 실패", task.getException().getMessage());
+//            }
+//        });
 
 
     }

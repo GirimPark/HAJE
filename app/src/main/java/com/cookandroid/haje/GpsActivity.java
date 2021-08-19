@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialog;
@@ -24,18 +25,29 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cookandroid.haje.R;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.kakao.sdk.common.util.KakaoCustomTabsClient;
+import com.kakao.sdk.navi.NaviClient;
+import com.kakao.sdk.navi.model.CoordType;
+import com.kakao.sdk.navi.model.Location;
+import com.kakao.sdk.navi.model.NaviOption;
 
 import net.daum.mf.map.api.MapCircle;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapPolyline;
 import net.daum.mf.map.api.MapView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class GpsActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener{
 
@@ -66,8 +78,11 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     ImageButton callButton;
     ImageButton myPgButton;
     //매칭 수락&거절 버튼_추가
-    ImageButton acceptButton;
-    ImageButton denyButton;
+    ImageButton rideButton;
+    ImageButton arriveButton;
+
+    FirebaseFirestore db;
+    Breakdown breakdown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,11 +121,11 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         });
 
         //매칭 수락&거절 버튼 안보이게_추가
-        acceptButton = findViewById(R.id.acceptButton);
-        denyButton = findViewById(R.id.denyButton);
+        rideButton = findViewById(R.id.rideButton);
+        arriveButton = findViewById(R.id.arriveButton);
         if(callButton.getVisibility()==View.VISIBLE){
-            acceptButton.setVisibility(View.INVISIBLE);
-            denyButton.setVisibility(View.INVISIBLE);
+            rideButton.setVisibility(View.INVISIBLE);
+            arriveButton.setVisibility(View.INVISIBLE);
         }
         //마이페이지 버튼 눌렸을 때
         myPgButton = findViewById(R.id.myPgButton);
@@ -122,11 +137,73 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
             }
         });
 
+        // 탑승 버튼 눌림 > 카카오내비 실행 - onRideButtonClicked 함수 밑에 따로 구현
+
+
+        // 도착 버튼 눌림 > 내역객체 수정, db입력, 내역페이지로 이동
+//        arriveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent breakdownIntent = getIntent();
+//                Breakdown breakdown = (Breakdown) breakdownIntent.getSerializableExtra("breakdown");
+//                Log.d("내역객체 접근", breakdown.getUser_email());
+//
+//                // 객체 도착시간 수정
+//                Date now = new Date();
+//                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.KOREA);
+//                String endTime = timeFormat.format(now);
+//
+//                breakdown.setEndTime(endTime);
+//
+//                // db에 입력
+//                db = FirebaseFirestore.getInstance();
+//                String id = breakdown.getId();
+//
+//                db.collection("breakdown").document(id).set(breakdown)
+//                .addOnCompleteListener(task -> {
+//                    if(task.isSuccessful()){
+//                        Log.d("db접근 내역 넣기 성공", breakdown.getId());
+//                    }
+//                    else{
+//                        Log.d("db접근 내역 넣기 실패", task.getException().getMessage());
+//                    }
+//                });
+//
+//                // 내역페이지로 이동
+//                Intent intent = new Intent(getApplicationContext(), ShowRideActivity.class);
+//                String uuid = id;
+//                intent.putExtra("uuid", id);
+//                startActivity(intent);
+//            }
+//        });
+
         if (!checkLocationServicesStatus()) {
             showDialogForLocationServiceSetting();
         }else {
             checkRunTimePermission();
         }
+    }
+
+    // 탑승 버튼 눌림 > 내역객체 수정, 카카오내비 실행
+    public void onRideButtonClicked(View v){
+        Toast.makeText(this, "카카오내비로 안내합니다", Toast.LENGTH_LONG).show();
+
+        Intent breakdownIntent = getIntent();
+        Breakdown breakdown = (Breakdown) breakdownIntent.getSerializableExtra("breakdown");
+
+        // 객체 탑승시간 수정
+        Date now = new Date();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.KOREA);
+        String startTime = timeFormat.format(now);
+
+        breakdown.setStartTime(startTime);
+
+        startActivity(
+                NaviClient.getInstance().shareDestinationIntent(
+                        new Location(breakdown.getDestination(), "37.62826552802066", "127.0904353396929"),
+                        new NaviOption(CoordType.WGS84)
+                )
+        );
     }
 
     @Override
@@ -252,6 +329,7 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         //CallDriverActivity에서 호출하기 버튼 눌렀을 때
         if(requestCode==101){
             String name = data.getStringExtra("name");
+            breakdown = (Breakdown) data.getSerializableExtra("breakdown");
             markDriverPosition();
         }
 
@@ -324,8 +402,8 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         //call button 안보이게 하기
         callButton.setVisibility(View.INVISIBLE);
         //매칭 수락&거절 버튼 보이게 하기
-        acceptButton.setVisibility(View.VISIBLE);
-        denyButton.setVisibility(View.VISIBLE);
+        rideButton.setVisibility(View.VISIBLE);
+        arriveButton.setVisibility(View.VISIBLE);
         //로딩 화면 띄우기
         startProgress();
         mapView.setMapViewEventListener(GpsActivity.this);
@@ -375,8 +453,47 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
                 marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 
                 mapView.addPOIItem(marker);
+
+
+                Log.d("내역객체 접근1", breakdown.getUser_email());
+
+                arriveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.d("내역객체 접근2", breakdown.getUser_email());
+
+                        // 객체 도착시간 수정
+                        Date now = new Date();
+                        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.KOREA);
+                        String endTime = timeFormat.format(now);
+
+                        breakdown.setEndTime(endTime);
+
+                        // db에 입력
+                        db = FirebaseFirestore.getInstance();
+                        String id = breakdown.getId();
+
+                        db.collection("breakdown").document(id).set(breakdown)
+                                .addOnCompleteListener(task -> {
+                                    if(task.isSuccessful()){
+                                        Log.d("db접근 내역 넣기 성공", breakdown.getId());
+                                    }
+                                    else{
+                                        Log.d("db접근 내역 넣기 실패", task.getException().getMessage());
+                                    }
+                                });
+
+                        // 내역페이지로 이동
+                        Intent intent = new Intent(getApplicationContext(), ShowRideActivity.class);
+                        String uuid = id;
+                        intent.putExtra("uuid", id);
+                        startActivity(intent);
+                    }
+                });
             }
         }, 3500);
+
+
     }
     //로딩 다이어로그 위한 함수
     private void startProgress(){
