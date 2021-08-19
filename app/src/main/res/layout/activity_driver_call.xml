@@ -57,7 +57,7 @@
 
 
             <EditText
-                android:id="@+id/request"
+                android:id="@+id/guardian_number"
                 android:layout_width="230dp"
                 android:layout_height="21dp"
                 android:layout_gravity="center"
@@ -79,15 +79,15 @@
                 android:background="@drawable/ic_input_box" />
 
 
-            <TextView
-                android:id="@+id/nowpoint"
-                android:layout_width="120dp"
-                android:layout_height="21dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
+<!--            <TextView-->
+<!--                android:id="@+id/nowpoint"-->
+<!--                android:layout_width="120dp"-->
+<!--                android:layout_height="21dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginLeft="40dp"-->
+<!--                android:layout_marginTop="10dp"-->
 
-                android:background="@drawable/ic_input_box" />
+<!--                android:background="@drawable/ic_input_box" />-->
 
 
             <TextView
@@ -96,7 +96,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="100dp"
                 android:background="@drawable/ic_input_box" />
 
