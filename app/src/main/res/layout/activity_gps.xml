@@ -33,8 +33,8 @@
         <!--로딩 화면 이미지-->
         <ImageView
             android:id="@+id/loadingImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerInParent="true"
             android:background="@drawable/frame_loading"
             android:elevation="4dp"
@@ -72,13 +72,9 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="600dp"
             android:layout_marginEnd="227dp"
-
-            
+            android:background="@drawable/btn_fin_selector"
             android:elevation="4dp"
-
-           
             android:onClick="onRideButtonClicked"
-            android:background="@drawable/ic_fin_80"
             android:visibility="invisible" />
 
         <ImageButton
@@ -92,16 +88,12 @@
             android:layout_marginTop="600dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
-
-            
+            android:background="@drawable/btn_arr_selector"
             android:elevation="4dp"
-
-            android:background="@drawable/ic_arr_80"
-
             android:visibility="invisible" />
 
     </RelativeLayout>
 
-    <include layout = "@layout/activity_my_page"/>
+    <include layout="@layout/activity_my_page" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
