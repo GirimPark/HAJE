@@ -35,16 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Item item = items.get(position);
-        Drawable drawable = ContextCompat.getDrawable(context, item.getImage());
-        holder.image.setBackground(drawable);
-        holder.title.setText(item.getTitle());
-        holder.cardview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, item.getTitle(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 
     @Override
@@ -53,14 +44,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
-        TextView title;
+
+        TextView rideDate, rideTime, ridePoint, arriveTime, arrivePoint;
         CardView cardview;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.image);
-            title = (TextView) itemView.findViewById(R.id.title);
+            rideDate = (TextView) itemView.findViewById(R.id.tv_rideDate);
+            rideTime = (TextView) itemView.findViewById(R.id.tv_rideTime);
+            ridePoint = (TextView) itemView.findViewById(R.id.tv_ridePlace);
+            arriveTime = (TextView) itemView.findViewById(R.id.tv_arriveTime);
+            arrivePoint = (TextView) itemView.findViewById(R.id.tv_destination);
             cardview = (CardView) itemView.findViewById(R.id.cardview);
         }
     }

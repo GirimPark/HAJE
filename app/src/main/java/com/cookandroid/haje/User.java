@@ -23,7 +23,6 @@ public class User {
         this.guardian_number = guardian_number;
     }
 
-
     public String getCar() {
         return car;
     }
