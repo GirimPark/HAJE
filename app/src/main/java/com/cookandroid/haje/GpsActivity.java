@@ -351,7 +351,7 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
                 //이동 거리 그리기
                 polyline = new MapPolyline();
                 polyline.setTag(1000);
-                polyline.setLineColor(Color.argb(128, 255, 202, 49)); // Polyline 컬러 지정.
+                polyline.setLineColor(Color.argb(128, 255, 0, 0)); // Polyline 컬러 지정.
 
                 // Polyline 좌표 지정.
                 polyline.addPoint(MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894));//기사 위치
@@ -369,10 +369,14 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
                 //고정 위치 핀 찍기
                 mapPoint = MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894);//기사 위치
                 marker.setItemName("기사님 위치");
-                marker.setTag(0);
+                marker.setTag(1);
                 marker.setMapPoint(mapPoint);
-                marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
-                marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+                //커스텀 마커 만들기
+                marker.setMarkerType(MapPOIItem.MarkerType.CustomImage); // 기본으로 제공하는 BluePin 마커 모양.
+                marker.setCustomImageResourceId(R.drawable.redpin);
+                marker.setCustomImageAutoscale(false);
+                marker.setCustomImageAnchor(0.5f, 1.0f);
+                //marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 
                 mapView.addPOIItem(marker);
             }
