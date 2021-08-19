@@ -7,17 +7,17 @@
     android:layout_height="720dp"
     android:layout_gravity="start"
     android:background="@drawable/bg_mypage"
-    tools:context=".MyPageActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MyPageActivity">
 
     <ImageButton
         android:id="@+id/btn_show_ride"
         android:layout_width="63dp"
         android:layout_height="17dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="65dp"
         android:layout_marginTop="213dp"
-        android:background="@drawable/ic_btn_ride"/>
+        android:background="@drawable/ic_btn_ride" />
 
 </RelativeLayout>
