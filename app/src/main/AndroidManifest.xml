@@ -23,8 +23,7 @@
             android:name=".DriverCallActivity"
             android:theme="@style/AppTheme.Drivercall"></activity>
         <activity
-            android:name=".SignupActivity3"
-            android:theme="@style/AppTheme.SignUpPage3" />
+            android:name=".SignupActivity3" />
         <activity android:name=".MyPageActivity" />
 
         <meta-data
@@ -32,8 +31,7 @@
             android:value="49b0f46f5cab7ddf1154d8c0399dabe0" />
 
         <activity
-            android:name=".GpsActivity"
-            android:theme="@style/AppTheme.SignUpPage3" />
+            android:name=".GpsActivity" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.LoginPage" />
