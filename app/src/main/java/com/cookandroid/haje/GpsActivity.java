@@ -504,7 +504,7 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
                                 });
 
                         // 내역페이지로 이동
-                        Intent intent = new Intent(getApplicationContext(), ShowRideActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), MyPage2.class);
                         String uuid = id;
                         intent.putExtra("uuid", id);
                         startActivity(intent);

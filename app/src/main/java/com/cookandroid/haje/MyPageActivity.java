@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -19,7 +20,8 @@ public class MyPageActivity extends AppCompatActivity {
         BtnShowRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ShowRideActivity.class);
+                Log.d("내역페이지", "접근 o");
+                Intent intent = new Intent(MyPageActivity.this, ShowRideActivity.class);
                 startActivity(intent);
             }
         });
