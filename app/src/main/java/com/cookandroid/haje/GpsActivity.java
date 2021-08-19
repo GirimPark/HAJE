@@ -65,12 +65,15 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     ImageButton mapGpsButton;
     ImageButton callButton;
     ImageButton myPgButton;
+    //매칭 수락&거절 버튼_추가
+    ImageButton acceptButton;
+    ImageButton denyButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_gps);
+
         //지도 띄우기
         mapView = new MapView(this);
         mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
@@ -101,6 +104,14 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
                 startActivityForResult(callIntent, 101);
             }
         });
+
+        //매칭 수락&거절 버튼 안보이게_추가
+        acceptButton = findViewById(R.id.acceptButton);
+        denyButton = findViewById(R.id.denyButton);
+        if(callButton.getVisibility()==View.VISIBLE){
+            acceptButton.setVisibility(View.INVISIBLE);
+            denyButton.setVisibility(View.INVISIBLE);
+        }
         //마이페이지 버튼 눌렸을 때
         myPgButton = findViewById(R.id.myPgButton);
         myPgButton.setOnClickListener(new View.OnClickListener() {
@@ -312,16 +323,21 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     private void markDriverPosition(){
         //call button 안보이게 하기
         callButton.setVisibility(View.INVISIBLE);
+        //매칭 수락&거절 버튼 보이게 하기
+        acceptButton.setVisibility(View.VISIBLE);
+        denyButton.setVisibility(View.VISIBLE);
         //로딩 화면 띄우기
         startProgress();
+        mapView.setMapViewEventListener(GpsActivity.this);
+        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
         //로딩 화면 띄운 후 구현
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mapView.setMapViewEventListener(GpsActivity.this);
-                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+//                mapView.setMapViewEventListener(GpsActivity.this);
+//                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
                 //토스트 메시지 띄우기
-                Toast.makeText(GpsActivity.this, "가까운 위치의 기사님과 매칭했습니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(GpsActivity.this, "가까운 위치의 기사님과 매칭 완료", Toast.LENGTH_LONG).show();
                 //원 그리기
                 circle1 = new MapCircle(
                         MapPoint.mapPointWithGeoCoord(37.57843368281801, 127.04861222228894), //기사 위치
