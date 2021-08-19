@@ -21,8 +21,6 @@ public class MyPageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ShowRideActivity.class);
                 startActivity(intent);
-
-
             }
         });
     }
