@@ -38,6 +38,8 @@ public class DriverCallActivity extends AppCompatActivity {
     TextView point;
     TextView paypoint;
     ImageButton btnNext;
+    ImageButton btnSearchStartPoint;
+    ImageButton btnSearchEndPoint;
 
     Breakdown breakdown;
 
@@ -63,6 +65,8 @@ public class DriverCallActivity extends AppCompatActivity {
         point = findViewById(R.id.point);
         paypoint = findViewById(R.id.paypoint);
         btnNext = findViewById(R.id.btnNext);
+        btnSearchStartPoint = findViewById(R.id.btnSearchStartPoint);
+        btnSearchEndPoint = findViewById(R.id.btnSearchEndPoint);
 
 
         setData(db, email); //  차 기종, 보호자 번호 받아오면 됨
@@ -84,7 +88,48 @@ public class DriverCallActivity extends AppCompatActivity {
             }
         });
 
+
+        btnSearchStartPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent searchIntent = new Intent(getApplicationContext(), WebViewActivity.class);
+                startActivityForResult(searchIntent, 102);
+            }
+        });
+
+        btnSearchEndPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent searchIntent = new Intent(getApplicationContext(), WebViewActivity.class);
+                startActivityForResult(searchIntent, 103);
+            }
+        });
+
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        switch (requestCode) {
+            case 102:
+                if (resultCode == RESULT_OK) {
+                    String data = intent.getExtras().getString("data");
+                    if (data != null) {
+                        StartPoint.setText(data);
+                    }
+                }
+                break;
+
+            case 103:
+                if (resultCode == RESULT_OK) {
+                    String data = intent.getExtras().getString("data");
+                    if (data != null) {
+                        EndPoint.setText(data);
+                    }
+                }
+                break;
+        }
+    }
+
 
 
     public void setData(FirebaseFirestore db, String email){  //파이어스토어에서 데이터 받아오는 함수
