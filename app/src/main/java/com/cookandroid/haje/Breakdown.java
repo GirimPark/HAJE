@@ -1,6 +1,8 @@
 package com.cookandroid.haje;
 
-public class Breakdown {
+import java.io.Serializable;
+
+public class Breakdown implements Serializable {
     String id;
     String date;
     String startTime;
