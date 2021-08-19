@@ -28,7 +28,7 @@
                 android:layout_marginTop="190dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/ic_input_box"
-                android:text="출발지를 입력하세요."
+                android:hint="출발지를 입력하세요."
                 android:textSize="15sp"
                 android:textStyle="italic" />
 
@@ -41,32 +41,33 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/ic_input_box"
-                android:text="도착지를 입력하세요." />
+                android:hint="도착지를 입력하세요."
+                android:textSize="15sp"
+                android:textStyle="italic"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/CarType"
                 android:layout_width="230dp"
                 android:layout_height="21dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="28dp"
 
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="25dp"
                 android:background="@drawable/ic_input_box"
-                android:text="차 기종을 입력하세요." />
+                 />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/guardian_number"
-                android:layout_width="230dp"
+                android:layout_width="199dp"
                 android:layout_height="21dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="40dp"
 
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="38dp"
-                android:background="@drawable/ic_input_box"
-                android:text="안심 연락망을 입력하세요." />
+                android:background="@drawable/ic_input_box" />
 
             <TextView
                 android:id="@+id/point"
@@ -96,7 +97,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="38dp"
                 android:layout_marginBottom="100dp"
                 android:background="@drawable/ic_input_box" />
 

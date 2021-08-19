@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -14,10 +15,17 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import net.daum.mf.map.api.MapView;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class DriverCallActivity extends AppCompatActivity {
     private FirebaseFirestore db;
@@ -25,10 +33,10 @@ public class DriverCallActivity extends AppCompatActivity {
 
     EditText StartPoint;
     EditText EndPoint;
-    EditText CarType;
-    EditText guardian_number;
-    TextView point;
-    TextView paypoint;
+    TextView CarType;
+
+    TextView guardian_number;
+
     ImageButton btnNext;
 
     Intent emailIntent;
@@ -49,13 +57,11 @@ public class DriverCallActivity extends AppCompatActivity {
         StartPoint = findViewById(R.id.StartPoint);
         EndPoint = findViewById(R.id.EndPoint);
         CarType = findViewById(R.id.CarType);
+
         guardian_number = findViewById(R.id.guardian_number);
-        point = findViewById(R.id.point);
-        paypoint = findViewById(R.id.paypoint);
         btnNext = findViewById(R.id.btnNext);
 
-        point.setText("50,000");
-        paypoint.setText("20,000");
+
         setData(db, email); //  차 기종, 보호자 번호 받아오면 됨
 
         btnNext.setOnClickListener(new View.OnClickListener(){
@@ -79,6 +85,7 @@ public class DriverCallActivity extends AppCompatActivity {
                         //Log.d("db접근 password 받아오기", task.getResult().get("password").toString());
                         String car = task.getResult().get("car").toString();
                         String guardian_num = task.getResult().get("guardian_number").toString();
+
                         CarType.setText(car);
                         guardian_number.setText(guardian_num);
                     }
