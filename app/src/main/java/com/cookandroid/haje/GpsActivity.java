@@ -454,7 +454,6 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
                 marker.setCustomImageResourceId(R.drawable.redpin);
                 marker.setCustomImageAutoscale(false);
                 marker.setCustomImageAnchor(0.5f, 1.0f);
-                //marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 
                 mapView.addPOIItem(marker);
 
