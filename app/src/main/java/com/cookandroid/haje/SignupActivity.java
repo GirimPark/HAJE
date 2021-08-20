@@ -85,7 +85,7 @@ public class SignupActivity extends AppCompatActivity {
         else if(!inputPW.getText().toString().equals(inputPW2.getText().toString())){
             Toast.makeText(this, "비밀번호 입력이 일치하지 않습니다", Toast.LENGTH_LONG).show();
         }
-
+        // **여기까지
         // 정보 입력 모두 되었으면 저장
         else{
             auth.createUserWithEmailAndPassword(
@@ -95,7 +95,7 @@ public class SignupActivity extends AppCompatActivity {
                 // 회원가입 성공
                if(task.isSuccessful()){
                    // 파이어스토어에 넣을 데이터 받기
-                   // **여기부터~
+                   // **여기부터
                    String number = inputPhoneNum.getText().toString();
                    String email = inputID.getText().toString();
                    String name = inputName.getText().toString();
@@ -105,14 +105,13 @@ public class SignupActivity extends AppCompatActivity {
                    if(rBtn1.isChecked())    auto_or_manual = true;
                    else auto_or_manual = false;
                    String guardian_num = inputNum2.getText().toString();
-                    // **여기까지 지워줘
+                    // **여기까지
                    db = FirebaseFirestore.getInstance();
 
                    User user = new User(number,
                            email, name,
                            password, auto_or_manual,
                            car, guardian_num);
-
 
                    db.collection("user").document(user.email).set(user)
                    .addOnCompleteListener(subtask -> {
@@ -132,10 +131,10 @@ public class SignupActivity extends AppCompatActivity {
                else{    //  회원가입 실패
                    Toast.makeText(this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                }
-
             });
-
         }
+
+
     }
 
 }

@@ -200,6 +200,7 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         }
     }
 
+
     // 탑승 버튼 눌림 > 내역객체 수정, 카카오내비 실행
     public void onRideButtonClicked(View v){
         Toast.makeText(this, "카카오내비로 안내합니다", Toast.LENGTH_LONG).show();
@@ -488,6 +489,8 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
 
 
                 Log.d("내역객체 접근1", breakdown.getUser_email());
+
+
 
                 arriveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
