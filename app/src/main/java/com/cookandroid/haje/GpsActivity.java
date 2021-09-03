@@ -96,6 +96,8 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
     FirebaseFirestore db;
     Breakdown breakdown;
 
+    double startX, startY, endX, endY;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -213,9 +215,14 @@ public class GpsActivity extends AppCompatActivity implements MapView.CurrentLoc
         breakdown.setStartTime(startTime);
         String destination = breakdown.getDestination();
 
+        startX = getIntent().getDoubleExtra("startX", -1);
+        startY = getIntent().getDoubleExtra("startY", -1);
+        endX = getIntent().getDoubleExtra("endX", -1);
+        endY = getIntent().getDoubleExtra("endY", -1);
+
         startActivity(
                 NaviClient.getInstance().shareDestinationIntent(
-                        new Location("서울여자대학교", "127.09039242435075", "37.62826552802066"),
+                        new Location(destination, Double.toString(endX), Double.toString(endY)),
                         new NaviOption(CoordType.WGS84)
                 )
         );
