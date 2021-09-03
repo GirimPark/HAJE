@@ -3,6 +3,9 @@ package com.cookandroid.haje;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,8 +20,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import net.daum.mf.map.api.MapView;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import android.app.Activity;
 import android.content.Intent;
@@ -45,6 +51,9 @@ public class DriverCallActivity extends AppCompatActivity {
 
     Intent callIntent;
     String email;
+
+    double startX, startY, endX, endY;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +86,17 @@ public class DriverCallActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                Geocoder geocoder = new Geocoder(getApplicationContext());
+                geoCoding(geocoder);
                 breakdown = setPoint(StartPoint.getText().toString(), EndPoint.getText().toString());
                 Log.d("내역객체 만들기", breakdown.getUser_email());
                 Intent intent = new Intent(getApplicationContext(), GpsActivity.class);
                 intent.putExtra("name", "mike");
                 intent.putExtra("breakdown", breakdown);
+                intent.putExtra("startX", startX);
+                intent.putExtra("startY", startY);
+                intent.putExtra("endX", endX);
+                intent.putExtra("endY", endY);
                 callIntent.putExtra("breakdown", breakdown);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
@@ -106,6 +121,40 @@ public class DriverCallActivity extends AppCompatActivity {
         });
 
     }
+
+
+    public void geoCoding(Geocoder geocoder){
+
+        List<Address> startList = null;
+        List<Address> endList = null;
+
+        String startAddress = StartPoint.getText().toString();
+        String endAddress = EndPoint.getText().toString();
+
+        try {
+            startList = geocoder.getFromLocationName(startAddress, 10);
+            endList = geocoder.getFromLocationName(endAddress, 10);
+        } catch (IOException e) {
+            Log.d("지오코더 오류", e.getMessage());
+        }
+
+        if(startList != null){
+            if(startList.size() == 0){
+                Toast.makeText(getApplicationContext(), "주소를 입력해주세요", Toast.LENGTH_LONG).show();
+            }
+            else{
+                Address temp = startList.get(0);
+                startX = temp.getLongitude();
+                startY = temp.getLatitude();
+
+                temp = endList.get(0);
+                endX = temp.getLongitude();
+                endY = temp.getLatitude();
+            }
+        }
+
+    }
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
